@@ -1,0 +1,27 @@
+<nav aria-label="...">
+    <ul class="pager">
+        <li class="previous {{ page_obj.has_previous|yesno:',disabled' }}">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}">
+                    <span aria-hidden="true">&larr; Older</span> 
+                </a>
+            {% else %}
+                <span aria-hidden="true">&larr; Older</span> 
+            {% endif %}
+        </li>
+        <li>
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+        </li>
+        <li class="next {{ page_obj.has_next|yesno:',disabled' }}">
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">
+                    <span aria-hidden="true">Newer &rarr;</span>
+                </a>
+            {% else %}
+                <span aria-hidden="true">Newer &rarr;</span>
+            {% endif %}
+        </li>
+    </ul>
+</nav>
