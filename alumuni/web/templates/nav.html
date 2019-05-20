@@ -17,7 +17,10 @@
                 <!-- Navigation -->
                 <div class="d-inline-block g-hidden-md-down g-pos-rel g-valign-middle g-pl-30 g-pl-0--lg">
                     <a class="btn u-btn-outline-primary g-font-size-13 btn-dashed g-py-10 g-px-15" href="{% url 'junkiri_create' %}">Continue as admin</a>
-                  </div>
+                  </div>&nbsp;
+                  <div class="d-inline-block g-hidden-md-down g-pos-rel g-valign-middle g-pl-30 g-pl-0--lg">
+                        <a class="btn u-btn-outline-primary g-font-size-13 btn-dashed g-py-10 g-px-15" href="{% url 'event_create' %}">add event</a>
+                      </div>
                 <div id="navBar" class="collapse navbar-collapse">
                     <ul class="navbar-nav align-items-lg-center g-py-30 g-py-0--lg ml-auto">
                         <li class="nav-item">
@@ -47,7 +50,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link g-color-primary--hover g-font-size-15 g-font-size-17--xl g-px-15--lg g-py-10 g-py-30--lg"
-                                href="page-events-1.html">
+                                href="{% url 'event' %}">
                                 Events
                             </a>
                         </li>

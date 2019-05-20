@@ -27,11 +27,11 @@
   <link rel="stylesheet" href="{% static 'assets/vendor/icon-line-pro/style.css' %}">
   <link rel="stylesheet" href="{% static 'assets/vendor/icon-hs/style.css' %}">
   <link rel="stylesheet" href="{% static 'assets/vendor/icon-material/material-icons.css' %}">
-  <link rel="stylesheet" href="{% static 'assets/vendor/animate.css' %}">
+  <!-- <link rel="stylesheet" href="{% static 'assets/vendor/animate.css' %}">
   <link rel="stylesheet" href="{% static 'assets/vendor/hs-megamenu/src/hs.megamenu.css' %}">
   <link rel="stylesheet" href="{% static 'assets/vendor/hamburgers/hamburgers.min.css' %}">
   <link rel="stylesheet" href="{% static 'assets/vendor/slick-carousel/slick/slick.css' %}">
-  <link rel="stylesheet" href="{% static 'assets/vendor/fancybox/jquery.fancybox.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendor/fancybox/jquery.fancybox.css' %}"> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <!-- CSS Unify Theme -->
@@ -53,13 +53,6 @@
 </head>
 
 <body>
-  {% if messages %}
-  <div>
-    {% for message in messages %}
-    alert(message);
-    {% endfor %}
-  </div>
-  {% endif %}
   <main>
     {% include 'nav.html' %}
     {% block content %}
@@ -84,19 +77,19 @@
   <script src="{% static 'assets/vendor/bootstrap/bootstrap.min.js' %}"></script>
 
   <!-- JS Implementing Plugins -->
-  <script src="{% static 'assets/vendor/hs-megamenu/src/hs.megamenu.js' %}"></script>
+  <!-- <script src="{% static 'assets/vendor/hs-megamenu/src/hs.megamenu.js' %}"></script>
   <script src="{% static 'assets/vendor/slick-carousel/slick/slick.js' %}"></script>
-  <script src="{% static 'assets/vendor/fancybox/jquery.fancybox.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/fancybox/jquery.fancybox.min.js' %}"></script> -->
 
   <!-- JS Unify -->
-  <script src="{% static 'assets/js/hs.core.js' %}"></script>
+  <!-- <script src="{% static 'assets/js/hs.core.js' %}"></script>
   <script src="{% static 'assets/js/components/hs.header.js' %}"></script>
   <script src="{% static 'assets/js/helpers/hs.hamburgers.js' %}"></script>
   <script src="{% static 'assets/js/components/hs.dropdown.js' %}"></script>
   <script src="{% static 'assets/js/helpers/hs.height-calc.js' %}"></script>
   <script src="{% static 'assets/js/components/hs.carousel.js' %}"></script>
   <script src="{% static 'assets/js/components/hs.popup.js' %}"></script>
-  <script src="{% static 'assets/js/components/hs.go-to.js' %}"></script>
+  <script src="{% static 'assets/js/components/hs.go-to.js' %}"></script> -->
 
   <!-- JS Customization -->
   <script src="{% static 'assets/js/custom.js' %}"></script>
@@ -152,6 +145,12 @@
       });
     });
   </script>
+
+<script>
+  $(document).ready(function(){
+    $('#myModal').modal();
+  });
+</script>
 
 </body>
 

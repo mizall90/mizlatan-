@@ -12,3 +12,17 @@ class JunkiriForm(ModelForm):
 
    
 
+class ContactForm(forms.Form):
+    name = forms.CharField(label='Name', max_length=100)
+    message = forms.CharField(label='Message', widget=forms.Textarea)
+    subject = forms.CharField(label='Subject', max_length=100)
+    email = forms.EmailField(label='Email', max_length=100)
+    phone = forms.CharField(label='Phone', max_length=100)
+
+
+class EventForm(ModelForm):
+
+    class Meta():
+        model = Event
+        fields = '__all__'
+        

@@ -1,0 +1,29 @@
+{% load static %}
+{% load bootstrap4 %}
+<form action='{% url "contact" %}' method="post" enctype='multipart/form-data'>{% csrf_token %}
+    <div class="row">
+        <div class="col-md-6 form-group g-mb-30">
+                {% bootstrap_field contact_form.name show_label=False %}
+        </div>
+
+        <div class="col-md-6 form-group g-mb-30">
+                {% bootstrap_field contact_form.email show_label=False %}
+        </div>
+
+        <div class="col-md-6 form-group g-mb-30">
+                {% bootstrap_field contact_form.subject show_label=False %}
+        </div>
+
+        <div class="col-md-6 form-group g-mb-30">
+                {% bootstrap_field contact_form.phone show_label=False %}
+        </div>
+
+        <div class="col-md-12 form-group g-mb-30">
+                {% bootstrap_field contact_form.message show_label=False %}
+        </div>
+    </div>
+
+    <div class="text-center">
+            {% bootstrap_button "Send Message" button_type="submit" button_class="btn-primary" %}
+    </div>
+</form>

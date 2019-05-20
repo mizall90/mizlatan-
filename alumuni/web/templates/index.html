@@ -30,128 +30,97 @@
 
 
 <!-- Events -->
-<div class="container g-pt-50 g-pb-70">
-  <h2 class="g-mb-40">Key Events</h2>
+<div class="g-bg-secondary">
+  <div class="container g-py-100">
+    <!-- Heading -->    
+          <div class="text-uppercase text-center u-heading-v2-4--bottom g-brd-primary">
+            <h4 class="g-line-height-1 g-font-weight-700 g-font-size-18 g-color-primary g-mb-20">Events</h4>
+            <h2 class="u-heading-v2__title g-font-weight-700 g-font-size-30 g-font-size-40--md g-theme-color-gray-dark-v1">
+              Check out upcomming events.</h2>
+          </div>
 
-  <div class="row">
-    <div class="col-sm-6 col-lg-3 g-mb-30">
-      <!-- Event Block -->
-      <article class="u-block-hover u-shadow-v38">
-        <div class="g-min-height-300 g-bg-img-hero g-bg-cover g-bg-white-gradient-opacity-v1--after g-pos-rel"
-          style="background-image: url(assets/img-temp/400x500/img11.jpg);">
-          <div class="g-pos-abs g-bottom-0 g-left-0 g-right-0 g-z-index-1 g-pa-20">
-            <div class="d-flex justify-content-between">
-              <div class="mt-auto mb-2">
-                <span class="d-block g-color-white g-line-height-1_4">9:00 am</span>
-                <span class="d-block g-color-white g-line-height-1_4">12:00 pm</span>
-              </div>
-              <div class="text-center">
-                <span class="g-color-white g-font-weight-500 g-font-size-40 g-line-height-0_7">24</span>
-                <span class="g-color-white g-line-height-0_7">Nov</span>
+    <!-- End Heading -->
+
+    <!-- More Events List -->
+    <ul class="list-unstyled g-mb-60">
+      {% for event in events %}
+      <!-- Events Item -->
+      <li class="u-block-hover u-shadow-v37--hover g-bg-secondary-dark-v1 g-bg-white--hover rounded g-px-50 g-py-30 mb-4">
+        <div class="row align-items-lg-center">
+          <div class="col-md-3 col-lg-2 g-mb-30 g-mb-0--lg">
+            <div class="d-flex align-items-center mb-3">
+              <span class="g-color-primary g-font-weight-500 g-font-size-50 g-line-height-1 mr-3">{{event.event_dt|date:'d'}}</span>
+              <div class="g-color-text-light-v1 text-center g-line-height-1_4">
+                <span class="d-block">{{event.event_dt|date:'M'}}</span>
+                <span class="d-block">{{event.event_dt|date:'Y'}}</span>
               </div>
             </div>
+            <span class="d-block g-color-text-light-v1">6.00pm - 7.15pm</span>
+          </div>
+          <div class="col-md-9 col-lg-8 g-mb-30 g-mb-0--lg">
+            <h3 class="h5 g-font-primary g-font-weight-500 mb-1">{{event.event_title}}</h3>
+            <p>{{event.discription|truncatechars:200}}</p>
+            <a class="d-inline-block u-link-v5 g-color-text-light-v1 g-color-primary--hover" href="#">
+              <i class="align-middle g-color-primary mr-2 icon-real-estate-027 u-line-icon-pro"></i>
+              New Zenith School
+            </a>
+          </div>
+          <div class="col-lg-2">
+            <a class="btn btn-block g-brd-2 g-brd-main-opacity-0_1 g-brd-primary--hover g-color-primary g-color-white--hover g-bg-primary--hover g-rounded-30 g-py-10" href="#">Register now</a>
           </div>
         </div>
+        <a class="u-link-v2" href="#"></a>
+      </li>
+      <!-- End Events Item -->
+      {% endfor %}
+    </ul>
+    <!-- End More Events List -->
 
-        <div class="g-pa-25">
-          <h3 class="g-color-primary--hover g-font-size-18 mb-0">Core Research Facilities, Annual Symposium</h3>
-        </div>
-
-        <a class="u-link-v2 g-z-index-2" href="#"></a>
-      </article>
-      <!-- End Event Block -->
-    </div>
-
-    <div class="col-sm-6 col-lg-3 g-mb-30">
-      <!-- Event Block -->
-      <article class="u-block-hover u-shadow-v38">
-        <div class="g-min-height-300 g-bg-img-hero g-bg-cover g-bg-white-gradient-opacity-v1--after g-pos-rel"
-          style="background-image: url(assets/img-temp/400x500/img12.jpg);">
-          <div class="g-pos-abs g-bottom-0 g-left-0 g-right-0 g-z-index-1 g-pa-20">
-            <div class="d-flex justify-content-between">
-              <div class="mt-auto mb-2">
-                <span class="d-block g-color-white g-line-height-1_4">12:15 pm</span>
-                <span class="d-block g-color-white g-line-height-1_4">12:45 pm</span>
-              </div>
-              <div class="text-center">
-                <span class="g-color-white g-font-weight-500 g-font-size-40 g-line-height-0_7">07</span>
-                <span class="g-color-white g-line-height-0_7">Dec</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="g-pa-25">
-          <h3 class="g-color-primary--hover g-font-size-18 mb-0">Ontario Ideas - Digital Rights: what are they, and why
-            do we need them?</h3>
-        </div>
-
-        <a class="u-link-v2 g-z-index-2" href="#"></a>
-      </article>
-      <!-- End Event Block -->
-    </div>
-
-    <div class="col-sm-6 col-lg-3 g-mb-30">
-      <!-- Event Block -->
-      <article class="u-block-hover u-shadow-v38">
-        <div class="g-min-height-300 g-bg-img-hero g-bg-cover g-bg-white-gradient-opacity-v1--after g-pos-rel"
-          style="background-image: url(assets/img-temp/400x500/img13.jpg);">
-          <div class="g-pos-abs g-bottom-0 g-left-0 g-right-0 g-z-index-1 g-pa-20">
-            <div class="d-flex justify-content-between">
-              <div class="mt-auto mb-2">
-                <span class="d-block g-color-white g-line-height-1_4">03:00 pm</span>
-                <span class="d-block g-color-white g-line-height-1_4">05:00 pm</span>
-              </div>
-              <div class="text-center">
-                <span class="g-color-white g-font-weight-500 g-font-size-40 g-line-height-0_7">19</span>
-                <span class="g-color-white g-line-height-0_7">Jan</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="g-pa-25">
-          <h3 class="g-color-primary--hover g-font-size-18 mb-0">USEAC Masterclass</h3>
-        </div>
-
-        <a class="u-link-v2 g-z-index-2" href="#"></a>
-      </article>
-      <!-- End Event Block -->
-    </div>
-
-    <div class="col-sm-6 col-lg-3 g-mb-30">
-      <!-- Event Block -->
-      <article class="u-block-hover u-shadow-v38">
-        <div class="g-min-height-300 g-bg-img-hero g-bg-cover g-bg-white-gradient-opacity-v1--after g-pos-rel"
-          style="background-image: url(assets/img-temp/400x500/img14.jpg);">
-          <div class="g-pos-abs g-bottom-0 g-left-0 g-right-0 g-z-index-1 g-pa-20">
-            <div class="d-flex justify-content-between">
-              <div class="mt-auto mb-2">
-                <span class="d-block g-color-white g-line-height-1_4">11:30 am</span>
-                <span class="d-block g-color-white g-line-height-1_4">1:00 pm</span>
-              </div>
-              <div class="text-center">
-                <span class="g-color-white g-font-weight-500 g-font-size-40 g-line-height-0_7">20</span>
-                <span class="g-color-white g-line-height-0_7">Jan</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="g-pa-25">
-          <h3 class="g-color-primary--hover g-font-size-18 mb-0">2017 Unify College of the Arts Undergraduate Degree
-            Show</h3>
-        </div>
-
-        <a class="u-link-v2 g-z-index-2" href="#"></a>
-      </article>
-      <!-- End Event Block -->
+    <div class="text-center">
+      <a class="btn u-shadow-v33 g-color-white g-color-white--hover g-bg-primary g-bg-main--hover g-rounded-30 g-px-25 g-py-10" href="{% url 'event' %}">View all Events</a>
     </div>
   </div>
 </div>
+
 <!-- End Events -->
 
 
 <!-- junkiri -->
-{% include 'junkiri.html' %}
+
 <!-- End junkiri -->
+
+<div class="g-pos-rel g-pb-100 g-pb-0--md">
+  <div class="container">
+      <div class="text-center">
+          <img class="junkiri_index" src="{% static 'assets/img/logo/junkiri.png' %}">
+        </div>
+    <div class="row">
+     <div class="col-md-7"> <p>As a University of Unify graduate, you have access to a wide range of resources, mentoring opportunities,
+        events and support to help you continue your passion for learning.</p> <p>As a University of Unify graduate, you have access to a wide range of resources, mentoring opportunities,
+            events and support to help you continue your passion for learning.</p> <p>As a University of Unify graduate, you have access to a wide range of resources, mentoring opportunities,
+                events and support to help you continue your passion for learning.</p></div>
+
+
+      <div class="col-md-5">
+        <div class="g-pl-15--md">
+          <div class="mb-5">
+            <div class="mb-4">
+              <span class="u-icon-v3 u-icon-size--lg g-color-main g-bg-secondary rounded-circle mb-4">
+                <i class="material-icons">verified_user</i>
+              </span>
+              <h2 class="mb-3">Alumni Benefits and Awards</h2>
+              <p>You may be surprised to discover what alumni benefits are on offer as a Unify graduate, including an
+                alumni magazine, career resources, library membership, and more.</p>
+            </div>
+            <p>As a University of Unify graduate, you have access to a wide range of resources, mentoring opportunities,
+              events and support to help you continue your passion for learning.</p>
+          </div>
+          <a class="btn u-shadow-v39 g-brd-main g-brd-primary--hover g-color-main g-color-white--hover g-bg-primary--hover g-font-size-default g-rounded-30 g-px-35 g-py-11"
+            href="#">Read More</a>
+        </div>
+      </div>
+    </div>
+
+   
+  </div>
+</div>
