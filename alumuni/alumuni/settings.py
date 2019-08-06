@@ -27,6 +27,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+SITE_ID=1
+
 
 # Application definition
 
@@ -37,8 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'web',
     'bootstrap4',
+    'account',
+    'bootstrap_datepicker_plus',
 ]
 
 MIDDLEWARE = [
@@ -49,9 +54,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "account.middleware.LocaleMiddleware",
+    "account.middleware.TimezoneMiddleware",
+    "account.middleware.ExpiredPasswordMiddleware",
 ]
 
 ROOT_URLCONF = 'alumuni.urls'
+
+BOOTSTRAP4 = {
+    'include_jquery': True,
+}
 
 TEMPLATES = [
     {
@@ -64,6 +76,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                "account.context_processors.account",
             ],
         },
     },
@@ -118,7 +131,7 @@ USE_TZ = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'email:  newzenithalumni@gmail.com'
+EMAIL_HOST_USER = 'newzenithalumni@gmail.com'
 EMAIL_HOST_PASSWORD = 'newzenithalumniassociation'
 EMAIL_PORT = 587
 
@@ -131,3 +144,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+ACCOUNT_LOGIN_REDIRECT_URL = 'dash'
+LOGIN_URL = '/login'

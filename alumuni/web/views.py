@@ -6,12 +6,15 @@ import datetime
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.contrib import messages
+from account.forms import SignupForm, LoginUsernameForm
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 # Create your views here.
 
 class IndexView(TemplateView):
-    template_name = 'home.html'
+    template_name = 'web/home.html'
+    
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
@@ -27,7 +30,7 @@ class IndexView(TemplateView):
 
 
 class Junkiri_Create(FormView):
-    template_name = 'junkiri_form.html'
+    template_name = 'web/junkiri_form.html'
     form_class = JunkiriForm
     success_url = '/junkiri'
 
@@ -38,7 +41,7 @@ class Junkiri_Create(FormView):
 
 
 class Junkiri_ListView(ListView):
-    template_name = 'junkiri_list.html'
+    template_name = 'web/junkiri_list.html'
     model = Junkiri
 
     def get_context_data(self, **kwargs):
@@ -49,7 +52,7 @@ class Junkiri_ListView(ListView):
 
 
 class Junkiri_DetailView(DetailView):
-    template_name = 'junkiri_detail.html'
+    template_name = 'web/junkiri_detail.html'
     model = Junkiri
     context_object_name = "Junkiri"
 
@@ -60,7 +63,7 @@ class Junkiri_DetailView(DetailView):
 
 
 class TeamView(TemplateView):
-    template_name = 'team.html'
+    template_name = 'web/team.html'
 
     def get_context_data(self, **kwargs):
         context = super(TeamView, self).get_context_data(**kwargs)
@@ -70,7 +73,7 @@ class TeamView(TemplateView):
 
 
 class ContactView(FormView):
-    template_name = 'contact_form.html'
+    template_name = 'web/contact_form.html'
     form_class = ContactForm
     success_url = '/'
 
@@ -97,7 +100,7 @@ class ContactView(FormView):
 
 
 class Event_Create(FormView):
-    template_name = 'event_form.html'
+    template_name = 'web/event_form.html'
     form_class = EventForm
     success_url = '/event/list/'
 
@@ -107,7 +110,7 @@ class Event_Create(FormView):
         return super().form_valid(form)
 
 class EventList(ListView):
-    template_name = 'event_list.html'
+    template_name = 'web/event_list.html'
     model = Event
 
     def get_context_data(self, **kwargs):
@@ -120,3 +123,22 @@ class EventList(ListView):
         context['pasts'] = Event.objects.filter(
             ended=True).order_by('-event_dt')
         return context
+
+class AdminDash(LoginRequiredMixin, TemplateView):
+    template_name ='web/admin_dashboard.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(AdminDash, self).get_context_data(**kwargs)
+        context['form'] = JunkiriForm
+        context['event_form'] = EventForm
+        context['dashboard'] = True
+        return context
+
+
+class LoginAdminView(TemplateView):
+    template_name = "account/index.html"
+
+    def get_context_data(self, **kwargs):
+            context = super(LoginAdminView, self).get_context_data(**kwargs)
+            context['login_form'] = LoginUsernameForm
+            return context

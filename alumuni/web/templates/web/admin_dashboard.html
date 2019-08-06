@@ -1,0 +1,78 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+       
+{% block content %}
+ 
+<br>
+<!-- Heading -->
+<div class="text-uppercase text-center u-heading-v2-4--bottom g-brd-primary">
+    <h4 class="g-line-height-1 g-font-weight-700 g-font-size-18 g-color-primary g-mb-20">Dashboard</h4>
+    <h2 class="u-heading-v2__title g-font-weight-700 g-font-size-30 g-font-size-40--md g-theme-color-gray-dark-v1">
+        Welcome to dashboard.</h2>
+</div>
+<br>
+<!-- End Heading -->
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-sm-5">
+            <div class="thumbnail-img">
+                <img src="#" title="img_title">
+            </div>
+
+            <ul role="tablist" id="tabmenu" class="nav-refresh nav-tabs-refresh list-group">
+                <li class="list-group-item"><a href="#junkiri" aria-controls="junkiri" role="tab" data-toggle="tab"> Add
+                        Junkiri </a></li>
+                <li class="list-group-item"><a href="#event" aria-controls="event" role="tab" data-toggle="tab">
+                        Create Event </a></li>
+                <li class="list-group-item"><a href="#test3" aria-controls="test3" role="tab" data-toggle="tab">
+                        Test </a></li>
+
+            </ul>
+        </div>
+        <div class="col-md-8 col-sm-7">
+            <div class="tab-content">
+
+                <div role="tabpanel" class="tab-pane active" id="junkiri">
+                    {% include 'web/junkiri_form.html' %}
+                </div>
+
+                <div role="tabpanel" class="tab-pane " id="event">
+                    {% include 'web/event_form.html' %}
+                </div>
+
+                <div role="tabpanel" class="tab-pane " id="test3">
+                    <h2>test3</h2>
+                </div>
+
+            </div>
+        </div>
+    </div>
+   
+</div>
+
+
+<!-- The Modal -->
+<div class="modal fade" id="mysignout">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        
+        <!-- Modal Header -->
+        <div class="modal-header">
+            <h4 class="modal-title">Signout</h4>
+            <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          {% include 'account/logout.html' %}
+        </div>
+
+        </div>
+    </div>
+    </div>
+    
+</div>
+
+{% endblock %}

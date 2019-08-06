@@ -1,0 +1,66 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block content %}
+<div class='container'>
+    <div style='text-align: center;'>
+        <img class="junkiri_logo" src="{% static 'assets/img/logo/junkiri-logo.jpg' %}">
+</div>
+
+    <div class="container g-pb-500">                  
+        <div class="u-heading-v3-1 g-mb-30">
+          <h2 class="h5 u-heading-v3__title g-color-gray-dark-v1 text-uppercase g-brd-primary">Popular Posts</h2>
+        </div>
+
+        <div class="row">
+        {% for junkiri in Junkiri %}
+        {% if forloop.counter < 7 %}
+          <!-- Popular News -->
+          <div class="col-md-4 g-mb-50">
+            <!-- Article -->
+            <article class="g-mb-40">
+              <figure class="u-shadow-v25 g-pos-rel g-mb-20">
+               {% if junkiri.photo %}
+                <img class="img-fluid w-100 junkiri_post_image" src="{{ junkiri.photo.url }}" alt="Image Description">
+               {% endif %}
+                <figcaption class="g-pos-abs g-top-20 g-left-20">
+                  <a class="btn btn-xs u-btn-teal text-uppercase rounded-0" href="{% url 'junkiri-detail' junkiri.id %}">View Post</a>
+                </figcaption>
+              </figure>
+
+              <h3 class="h4 g-mb-10">
+                <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="#!">{{ junkiri.post_title }}</a>
+              </h3>
+
+              <ul class="list-inline g-color-gray-dark-v4 g-font-size-12">
+                <li class="list-inline-item">
+                  <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">{{ junkiri.author_name }}</a>
+                </li>
+                <li class="list-inline-item">/</li>
+                <li class="list-inline-item">
+                 {{ junkiri.post_dt }}
+                </li>
+                <li class="list-inline-item">/</li>
+                <li class="list-inline-item">
+                  <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
+                    Batch -{{ junkiri.batch }} B.S
+                  </a>
+                </li>
+              </ul>
+
+              <p class="g-color-gray-dark-v41">{{junkiri.quote|truncatechars:30}}</p>
+              <a class="g-font-size-12" href="{% url 'junkiri-detail' junkiri.id %}">Read More..</a>
+            </article>
+            <!-- Article -->
+          </div>
+          <!-- End Popular News -->
+          {% endif %}
+          {% endfor %}
+         
+        </div>
+
+      </div>
+
+</div>
+{% endblock %}

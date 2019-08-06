@@ -1,0 +1,119 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+{% block content %}
+<div class="g-bg-img-hero g-bg-pos-top-center" style="background-image: url(web/static/imgmap-image.png);">
+    <div class="container g-pt-100 g-pb-100 g-pb-130--lg">
+        <div class="g-pos-rel">
+            <div class="row">
+                <div class="col-md-6">
+                    <!-- Heading -->
+                    <div class="g-mb-40">
+                        <h2 class="h1 mb-3">Sign in to Dashboard</h2>
+                        <p>By signing in you will be authorized to access your account and web sites that use the
+                            Sign in Service. Use is subject to but not limited to the policies and guidelines listed
+                            below :
+                    </div>
+                    <!-- End Heading -->
+                </div>
+            </div>
+
+            <div class="row justify-content-between">
+
+                <div class="col-md-6 col-lg-5  order-md-2 g-pos-abs--md g-top-0 g-right-0">
+
+                    <!-- Login Form -->
+                    <form action='{% url "account_login" %}' method="post" enctype='multipart/form-data'>
+                        {% csrf_token %}
+                        <!-- Signin -->
+                        <div id="signin">
+                            <div class="u-shadow-v35 g-bg-white rounded  g-px-40 g-py-50">
+                                <div class="g-mb-20">
+                                    <div class="input-group">
+                                        <h1>Login Form</h1>
+                                    </div>
+                                </div>
+
+                                <div class="g-mb-20">
+                                    <div class="input-group">
+                                        {% bootstrap_field login_form.username show_label=False %}
+                                    </div>
+                                </div>
+
+
+                                <div class="g-mb-20">
+                                    <div class="input-group">
+                                        {% bootstrap_field login_form.password show_label=False %}
+                                    </div>
+                                </div>
+                                <div class="g-mb-20">
+                                    <div class="input-group">
+                                        <button type="submit" class="btn btn-primary"> <i
+                                                class="fa fa-fw fa-sign-in"></i> Login</button>
+                                    </div>
+                                </div>
+
+
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <!-- <a class="g-color-text-light-v1 g-font-size-default" id="forgot-password-link"
+                                        href="#!">Forgot Password?</a> -->
+                                </div>
+                            </div>
+
+                            <div class="text-center g-pt-30">
+                                <!-- <p class="g-color-text-light-v1 g-font-size-default mb-0">Do not have an account? <a
+                                        class="g-font-size-default" id="signup-link" href="#!">Create Account</a></p> -->
+                            </div>
+
+                        </div>
+                        <!-- End Signin -->
+
+
+                        <hr class="g-hidden-md-up g-my-60">
+                </div>
+
+                <div class="col-md-6 order-md-1">
+                    <div class="g-max-width-400">
+                        <!-- Media -->
+                        <div class="media align-items-center g-mb-30">
+                            <div class="d-flex mr-4">                          
+                                    <img class=" u-icon-v1 u-icon-size--lg u-shadow-v32  rounded-circle" src="{% static 'assets/img/logo/junkiri-logo.jpg' %}">
+                            </div>
+                            <div class="media-body">
+                                <p class="mb-0">Add Junkiri article.</p>
+                            </div>
+                        </div>
+                        <!-- End Media -->
+
+                        <!-- Media -->
+                        <div class="media align-items-center g-mb-30">
+                            <div class="d-flex mr-4">
+                                    <img class=" u-icon-v1 u-icon-size--lg u-shadow-v32  rounded-circle" src="{% static 'assets/img/logo/team_icon.png' %}">
+                            </div>
+                            <div class="media-body">
+                                <p class="mb-0">Add team members.</p>
+                            </div>
+                        </div>
+                        <!-- End Media -->
+
+                        <!-- Media -->
+                        <div class="media align-items-center">
+                            <div class="d-flex mr-4">
+                                    <img class=" u-icon-v1 u-icon-size--lg u-shadow-v32  rounded-circle" src="{% static 'assets/img/logo/event_icon.png' %}">
+                            </div>
+                            <div class="media-body">
+                                <p class="mb-0">Create event.</p>
+
+                            </div>
+                        </div>
+                        <!-- End Media -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

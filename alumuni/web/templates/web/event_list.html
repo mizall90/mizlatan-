@@ -1,0 +1,149 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+<!-- ongoing -->
+{% if ongoing %}
+<div class="container g-brd-y g-brd-secondary-light-v2 g-pt-50 g-pb-60">
+    <div class="container g-pb-500">                  
+      <div class="u-heading-v3-1 g-mb-30">
+        <h2 class="h5 u-heading-v3__title g-color-gray-dark-v1 text-uppercase g-brd-primary">Ongoing Event</h2>
+      </div>
+      <div class="row justify-content-lg-center align-items-md-center">
+        <div class="col-md-6 col-lg-5 g-mb-30 g-mb-0--md">
+          <h2 class="mb-3"><a class="h2 u-link-v5 g-color-main g-color-primary--hover" href="#">{{ongoing.event_title}}</a></h2>
+          <p>{{ongoing.discription}}</p>
+        </div>
+
+        <div class="col-md-6 col-lg-5 offset-lg-1">
+          <img class="img-fluid u-shadow-v39 g-brd-around g-brd-10 g-brd-white rounded" src="{{ongoing.banner.url}}" alt="Image Description">
+        </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+<!-- end ongoing -->
+
+<!-- upcomming -->
+<div class="container g-pt-50 g-pb-50">
+    <div class="container g-pb-500">                  
+        <div class="u-heading-v3-1 g-mb-30">
+          <h2 class="h5 u-heading-v3__title g-color-gray-dark-v1 text-uppercase g-brd-primary">Upcoming Events</h2>
+        </div>
+
+        <div class="row">
+            {% for event in events %}
+            {% if forloop.counter < 5 %}
+            <div class="col-sm-6 col-lg-3 g-mb-30">
+              <!-- Event Block -->
+              <article class="u-block-hover u-shadow-v38">
+                <div class="g-min-height-300 g-bg-img-hero g-bg-cover g-bg-white-gradient-opacity-v1--after g-pos-rel"
+                  style="background-image: url({{event.banner.url}});">
+                  <div class="g-pos-abs g-bottom-0 g-left-0 g-right-0 g-z-index-1 g-pa-20">
+                    <div class="d-flex justify-content-between">
+                      <div class="mt-auto mb-2">
+                        <span class="d-block g-color-white g-line-height-1_4">Starts: {{event.event_dt|date:'d M h a'}}</span>
+                        <span class="d-block g-color-white g-line-height-1_4">Ends: {{event.event_end_dt|date:'d M h a'}}</span>
+                      </div>
+                      <div class="text-center">
+                        <span
+                          class="g-color-white g-font-weight-500 g-font-size-40 g-line-height-0_7">{{event.event_dt|date:'d'}}</span>
+                        <span class="g-color-white g-line-height-0_7">{{event.event_dt|date:'M'}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+        
+                <div class="g-pa-25 text-center">
+                  <h3 class="g-color-primary g-font-primary g-font-size-18 mb-0">{{event.event_title}}</h3>
+                  <h3 class="g-color-primary--hover g-font-size-18 mb-0">Cordinated by: {{event.co_ordinated_by}}</h3>
+                  {% if event.ended %}
+                  <button class="btn btn-success">Event Ended</button>
+                  {% elif event.is_ongoing %}
+                  <button class="btn" style='background-color: #128CE5; color:aliceblue;'>Ongoing Event</button>
+                  {% else %}
+                  <button class="btn btn-primary">Join Event</button>
+                  {% endif %}
+                </div>
+        
+              </article>
+              <!-- End Event Block -->
+            </div>
+            {% endif %}
+            {% endfor %}
+          </div>
+  </div>
+ 
+<!-- end upcommign -->
+
+<!-- past -->
+<div class="container g-pt-50">
+               
+        <div class="u-heading-v3-1 g-mb-30">
+          <h2 class="h5 u-heading-v3__title g-color-gray-dark-v1 text-uppercase g-brd-primary">Past Events</h2>
+        </div>
+
+    <div class="row">
+      {% for past in pasts %}
+      {% if forloop.counter|divisibleby:2 %}
+      <div class="col-lg-6 g-mb-30">
+        <!-- Event Listing -->
+        <article class="u-shadow-v39">
+          <div class="row">
+            <div class="col-4">
+              <div class="g-min-height-170 g-bg-img-hero" style="background-image: url({{past.banner.url}});"></div>
+            </div>
+
+            <div class="col-8 g-min-height-170 g-flex-centered">
+              <div class="media align-items-center g-py-40">
+                <div class="d-flex col-8">
+                  <h3 class="g-line-height-1 mb-0"><a class="u-link-v5 g-color-main g-color-primary--hover g-font-size-18" href="#">{{past.event_title}}</a></h3>
+                </div>
+                <div class="media-body col-4">
+                  <span class="g-color-primary g-font-weight-500 g-font-size-35 g-line-height-0_7">{{past.event_end_dt|date:'d'}}</span>
+                  <span class="g-color-primary g-font-weight-500 g-font-size-20 g-line-height-0_7">{{past.event_end_dt|date:'M'}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+        <!-- End Event Listing -->
+      </div>
+      {% endif %}
+      {% endfor %}
+
+      {% for past in pasts %}
+      {% if not forloop.counter|divisibleby:2 %}
+      <div class="col-lg-6 g-mb-30">
+        <!-- Event Listing -->
+        <article class="u-shadow-v39">
+          <div class="row">
+            <div class="col-4">
+              <div class="g-min-height-170 g-bg-img-hero" style="background-image: url({{past.banner.url}});"></div>
+            </div>
+
+            <div class="col-8 g-min-height-170 g-flex-centered">
+              <div class="media align-items-center g-py-40">
+                <div class="d-flex col-8">
+                  <h3 class="g-line-height-1 mb-0"><a class="u-link-v5 g-color-main g-color-primary--hover g-font-size-18" href="#">{{past.event_title}}</a></h3>
+                </div>
+                <div class="media-body col-4">
+                  <span class="g-color-primary g-font-weight-500 g-font-size-35 g-line-height-0_7">{{past.event_end_dt|date:'d'}}</span>
+                  <span class="g-color-primary g-font-weight-500 g-font-size-20 g-line-height-0_7">{{past.event_end_dt|date:'M'}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+        <!-- End Event Listing -->
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+<!-- endpast -->
+</div>
+</div>
+{% endblock %}

@@ -1,6 +1,6 @@
 from django.conf.urls import url, include
 from . import views
-from .views import ( IndexView, Junkiri_ListView, Junkiri_DetailView, Junkiri_Create, TeamView, ContactView, Event_Create, EventList )
+from .views import ( IndexView, Junkiri_ListView, Junkiri_DetailView, Junkiri_Create, TeamView, ContactView, Event_Create, EventList, AdminDash, LoginAdminView )
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -14,5 +14,7 @@ urlpatterns = [
     url(r'^contact/$', ContactView.as_view(), name='contact'),
     url(r'^event/list/$', EventList.as_view(), name='event'),
     url(r'^event/create/$', Event_Create.as_view(), name='event_create'),
+    url(r'^dashboard/$', AdminDash.as_view(), name='dash'),
+    url(r'^login/$', LoginAdminView.as_view(), name='login_as_admin'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

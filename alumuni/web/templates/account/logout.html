@@ -1,0 +1,16 @@
+{% load static %}
+{% block content %}
+<div class="container text-center">
+    <br>
+        <form method="POST" action="{% url "account_logout" %}" class="form-horizontal">
+                <fieldset>
+                    {% csrf_token %}
+                    <p>Are you sure you want to log out?</p>
+                    <div>
+                        <button type="submit" class="btn btn-primary">Signout</button>
+                    </div>
+                </fieldset>
+            </form>
+            <br>
+</div>  
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% block content %}
+    {% include 'web/index.html' %}
+    {% if messages %}
+   <!-- The Modal -->
+   <div class="modal fade" id="myModal">
+     <div class="modal-dialog">
+       <div class="modal-content">
+
+          <!-- Modal Header -->
+       <div class="modal-header">
+           <h4 class="modal-title">Message Sent Successfully.</h4>
+         </div>
+
+         <!-- Modal body -->
+         <div class="modal-body">
+
+             {% for message in messages %}
+             {{ message }}
+             {% endfor %}
+
+         </div>
+
+         <!-- Modal footer -->
+         <div class="modal-footer">
+           <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+         </div>
+
+       </div>
+     </div>
+   </div>
+   {% endif %}
+
+{% endblock %}
+
+</body>
+
+</html>

@@ -1,0 +1,84 @@
+{% load static %}
+{% load bootstrap4 %}
+{% block nav %}
+<!-- Header -->
+<header class="u-header bg-grey nav-border">
+    <div class="u-header__section">
+        <div class="container height-100">
+            <!-- Nav -->
+            <nav class="js-mega-menu navbar height-100 navbar-expand-lg g-px-0 g-py-5 g-py-0--lg">
+                <!-- Logo -->
+                <a class="navbar-brand g-max-width-170 g-max-width-200--lg" href="/">
+                    <img class="img-fluid icon-logo g-hidden-lg-down" src="{% static 'assets/img/logo/logo.png' %}"
+                        alt="Logo">
+                </a>
+                <!-- End Logo -->
+
+                <!-- button -->
+                <button class="navbar-toggler navbar-toggler-right btn g-line-height-1 g-brd-none g-pa-0" type="button"
+                    aria-label="Toggle navigation" aria-expanded="false" aria-controls="navBar" data-toggle="collapse"
+                    data-target="#navBar">
+                    <span class="hamburger hamburger--slider g-px-0">
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                    </span>
+                </button>
+                <!-- end button -->
+
+
+                <!-- Navigation -->
+                {% if dashboard %}
+                <div class="d-inline-block g-hidden-md-down g-pos-rel g-valign-middle g-pl-30 g-pl-0--lg">
+                        <button id="mysignoutbtn" class="btn u-btn-outline-primary g-font-size-13 btn-dashed g-py-10 g-px-15">Signout from admin</button>
+                    </div>
+                {% else %}
+                <div class="d-inline-block g-hidden-md-down g-pos-rel g-valign-middle g-pl-30 g-pl-0--lg">
+                        <a class="btn u-btn-outline-primary g-font-size-13 btn-dashed g-py-10 g-px-15"
+                            href="{% url 'login_as_admin' %}">Signin as admin</a>
+                    </div>
+                {% endif %}
+                <div id="navBar" class="collapse navbar-collapse">
+                    <ul class="navbar-nav align-items-lg-center g-py-30 g-py-0--lg ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link g-color-primary--hover g-font-size-15 g-font-size-17--xl g-px-15--lg g-py-10 g-py-30--lg"
+                                href="page-future-students-1.html">
+                                About Us
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link g-color-primary--hover g-font-size-15 g-font-size-17--xl g-px-15--lg g-py-10 g-py-30--lg"
+                                href="{% url 'team' %}">
+                                Team
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link g-color-primary--hover g-font-size-15 g-font-size-17--xl g-px-15--lg g-py-10 g-py-30--lg"
+                                href="{% url 'junkiri' %}">
+                                Junkiri
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link g-color-primary--hover g-font-size-15 g-font-size-17--xl g-px-15--lg g-py-10 g-py-30--lg"
+                                href="page-faculty-and-staff-1.html">
+                                Blogs
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link g-color-primary--hover g-font-size-15 g-font-size-17--xl g-px-15--lg g-py-10 g-py-30--lg"
+                                href="{% url 'event' %}">
+                                Events
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- End Navigation -->
+            </nav>
+            <!-- End Nav -->
+        </div>
+    </div>
+</header>
+<!-- End Header -->
+
+{% endblock nav %}

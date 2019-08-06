@@ -1,0 +1,43 @@
+
+{% load static %}
+{% load bootstrap4 %}
+{% bootstrap_javascript jquery='full' %}  
+
+{% block content %}
+{{ event_form.media }}   
+<div class="container">
+        <!-- <div style='text-align: center;'>
+                <img class="junkiri_logo" src="{% static 'assets/img/logo/junkiri-logo.jpg' %}">
+        </div> -->
+        <div class="u-heading-v3-1 g-mb-30">
+                <h2 class="h5 u-heading-v3__title g-color-gray-dark-v1 text-uppercase g-brd-primary">Create Event</h2>
+        </div>
+        <form action='{% url "junkiri_create" %}' method="post" enctype='multipart/form-data'>{% csrf_token %}
+                <div class="row">
+                        <div class="col-sm-12">{% bootstrap_field event_form.banner %}</div>
+
+                </div>
+                <div class="row">
+                        <div class="col-sm-3">{% bootstrap_field event_form.event_title %}</div>
+                        <div class="col-sm-3"> {% bootstrap_field event_form.co_ordinated_by %}</div>
+                        <div class="col-sm-3">{% bootstrap_field event_form.event_dt %}</div>
+                        <div class="col-sm-3">{% bootstrap_field event_form.event_end_dt %}</div>
+                </div>
+                <div class="row">
+                        <div class="col-sm-12">
+                                {% bootstrap_field event_form.discription %}
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="col-sm-6">{% bootstrap_field event_form.ended %}
+                                {% bootstrap_field event_form.is_upcoming %} {% bootstrap_field event_form.is_ongoing %}</div>
+                </div>
+                <div class="row">
+                        <div class="col-sm-6">
+                                {% bootstrap_button "Save" button_type="submit" button_class="btn-primary" %}
+                        </div>
+                </div>
+
+        </form><br>
+</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+
+{% load i18n %}
+{% load account_tags %}
+{% block head_title %}{% endblock %}
+{% block login %}
+    <div class="row">
+        <div class="span8">
+            <form class="form-inline" method="POST" action="{% url "account_login" %}" autocapitalize="off" class="form-horizontal"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
+                
+                {% csrf_token %}
+                
+                <label >{{ login_form.username}}</label> &nbsp;&nbsp;
+                <label>{{ login_form.password}}</label> &nbsp;&nbsp;
+                {% if redirect_field_value %}
+                    <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary"> <i class="fa fa-fw fa-sign-in"></i> Login</button>
+                    <a href="{% url "account_password_reset" %}" class="btn">{% trans "Forgot your password?" %}</a>
+                </div>
+            </form>
+        </div>
+       
+    </div>
+{% endblock %}

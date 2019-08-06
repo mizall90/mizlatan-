@@ -1,0 +1,32 @@
+{% load bootstrap4 %}
+{% load i18n %}
+{% load static %}
+{% block head_title %}
+{% endblock %}
+{% block signup %}
+    <div class="row">
+        <div class="span8">
+            <form class="signup_form" id="signup_form" method="post" action="{% url "account_signup" %}" autocapitalize="off" class="form-horizontal"{% if form.is_multipart %} enctype="multipart/form-data"{% endif %}>
+                
+                <fieldset>
+                    <h2 class="font_text">Signup Form</h2>
+                    {% csrf_token %}
+                  <label> {{ signup_form.username }} </label><br>
+                  <label> {{ signup_form.password }} </label><br>
+                  <label> {{ signup_form.password_confirm }} </label><br>
+                  <label> {{ signup_form.email }} </label>
+                    {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                    {% endif %}
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-success">{% trans "Sign up" %}</button>&nbsp;
+                        <button type="Reset" class="btn btn-danger">{% trans "Reset" %}</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+        <div class="span4">
+            {% include "account/_signup_sidebar.html" %}
+        </div>
+    </div>
+{% endblock %}
