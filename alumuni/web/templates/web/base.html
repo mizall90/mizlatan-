@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/bootstrap.min.css' %}">
 
   <!-- CSS Implementing Plugins -->
- 
+
   <link rel="stylesheet" href="{% static 'assets/vendor/icon-awesome/css/font-awesome.min.css' %}">
   <link rel="stylesheet" href="{% static 'assets/vendor/icon-line-pro/style.css' %}">
   <link rel="stylesheet" href="{% static 'assets/vendor/icon-hs/style.css' %}">
@@ -69,6 +69,26 @@
     </a>
     <!-- End Go to Top -->
   </main>
+
+  <!-- The Modal -->
+  <div class="modal fade" id="mysignout">
+    <div class="modal-dialog">
+      <div class="modal-content">
+
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Signout</h4>
+          <button type="button" class="close" data-dismiss="modal">×</button>
+        </div>
+
+        <!-- Modal body -->
+        <div class="modal-body">
+          {% include 'account/logout.html' %}
+        </div>
+
+      </div>
+    </div>
+  </div>
 
   <!-- JS Global Compulsory -->
   <script src="{% static 'assets/vendor/jquery/jquery.min.js' %}"></script>
@@ -120,7 +140,7 @@
     });
   </script>
 
-<script>
+  <script>
     $(document).ready(function () {
       // Activate Carousel
       $("#teamCarousel").carousel();
@@ -146,39 +166,39 @@
     });
   </script>
 
-<script>
-  $(document).ready(function(){
-    $('#myModal').modal();
-  });
-</script>
-
-<script>
-$(document).ready(function(){
-  $("#mysignoutbtn").click(function(){
-    $("#mysignout").modal();
-  });
-});
-</script>
-
-<script type="text/javascript">
-  $(":file").filestyle({buttonName: "btn-default"});
-  
-  
-  var hash = window.location.hash;
-  $('#tabmenu a[href="' + hash + '"]').tab('show');
-  location.hash = "#" + hash;
-  $(function(){
-    var hash = window.location.hash;
-    hash && $('ul.nav-refresh a[href="' + hash + '"]').tab('show');
-  
-    $('.nav-tabs-refresh a').click(function (e) {
-      $(this).removeClass('active')
-      $(this).tab('show');
-      var scrollmem = $('body').scrollTop() || $('html').scrollTop();
-      window.location.hash = this.hash;
-      $('html,body').scrollTop(scrollmem);
+  <script>
+    $(document).ready(function () {
+      $('#myModal').modal();
     });
-  });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      $("#mysignoutbtn").click(function () {
+        $("#mysignout").modal();
+      });
+    });
+  </script>
+
+  <script type="text/javascript">
+    $(":file").filestyle({ buttonName: "btn-default" });
+
+
+    var hash = window.location.hash;
+    $('#tabmenu a[href="' + hash + '"]').tab('show');
+    location.hash = "#" + hash;
+    $(function () {
+      var hash = window.location.hash;
+      hash && $('ul.nav-refresh a[href="' + hash + '"]').tab('show');
+
+      $('.nav-tabs-refresh a').click(function (e) {
+        $(this).removeClass('active')
+        $(this).tab('show');
+        var scrollmem = $('body').scrollTop() || $('html').scrollTop();
+        window.location.hash = this.hash;
+        $('html,body').scrollTop(scrollmem);
+      });
+    });
   </script>
 </body>
 

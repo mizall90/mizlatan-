@@ -28,7 +28,7 @@
 
 
                 <!-- Navigation -->
-                {% if dashboard %}
+                {% if request.user.is_authenticated %}
                 <div class="d-inline-block g-hidden-md-down g-pos-rel g-valign-middle g-pl-30 g-pl-0--lg">
                         <button id="mysignoutbtn" class="btn u-btn-outline-primary g-font-size-13 btn-dashed g-py-10 g-px-15">Signout from admin</button>
                     </div>
