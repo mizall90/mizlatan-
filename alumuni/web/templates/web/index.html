@@ -66,10 +66,11 @@
             </a>
           </div>
           <div class="col-lg-2">
-            <a class="btn btn-block g-brd-2 g-brd-main-opacity-0_1 g-brd-primary--hover g-color-primary g-color-white--hover g-bg-primary--hover g-rounded-30 g-py-10" href="#">Register now</a>
+              <button type="button" class="btn btn-block g-brd-2 g-brd-main-opacity-0_1 g-brd-primary--hover g-color-primary g-color-white--hover g-bg-primary--hover g-rounded-30 g-py-10" data-toggle="modal" data-target="#register">
+                  Register now
+                </button>
           </div>
         </div>
-        <a class="u-link-v2" href="#"></a>
       </li>
       <!-- End Events Item -->
       {% endfor %}
@@ -95,28 +96,49 @@
           <img class="junkiri_index" src="{% static 'assets/img/logo/junkiri.png' %}">
         </div>
     <div class="row">
-     <div class="col-md-7"> <p>As a University of Unify graduate, you have access to a wide range of resources, mentoring opportunities,
-        events and support to help you continue your passion for learning.</p> <p>As a University of Unify graduate, you have access to a wide range of resources, mentoring opportunities,
-            events and support to help you continue your passion for learning.</p> <p>As a University of Unify graduate, you have access to a wide range of resources, mentoring opportunities,
-                events and support to help you continue your passion for learning.</p></div>
-
+     <div class="col-md-7 starring">
+       <br> 
+        <div class="col-md-12 g-mb-50">
+            <!-- Article -->
+            <article class="g-mb-40">
+              <figure class="u-shadow-v25 g-pos-rel g-mb-20">
+               {% if starring.photo %}
+                <img class="img-fluid w-100" src="{{ starring.photo.url }}" alt="Image Description">
+               {% endif %}
+            </article>
+            <!-- Article -->
+          </div>
+     </div>
 
       <div class="col-md-5">
         <div class="g-pl-15--md">
           <div class="mb-5">
-            <div class="mb-4">
-              <span class="u-icon-v3 u-icon-size--lg g-color-main g-bg-secondary rounded-circle mb-4">
-                <i class="material-icons">verified_user</i>
-              </span>
-              <h2 class="mb-3">Alumni Benefits and Awards</h2>
-              <p>You may be surprised to discover what alumni benefits are on offer as a Unify graduate, including an
-                alumni magazine, career resources, library membership, and more.</p>
+            <br>
+            <div style="text-align: justify;" class="mb-4">
+              <h2 class="g-color-primary">
+               {{ starring.post_title }}
+              </h2>
+
+              <ul class="list-inline g-color-gray-dark-v4 g-font-size-12">
+                <li class="list-inline-item">
+                  <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">{{ starring.author_name }}</a>
+                </li>
+                <li class="list-inline-item">/</li>
+                <li class="list-inline-item">
+                 {{ starring.post_dt }}
+                </li>
+                <li class="list-inline-item">/</li>
+                <li class="list-inline-item">
+                  <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#!">
+                    Batch -{{ starring.batch }} B.S
+                  </a>
+                </li>
+              </ul>
+              <p class="g-color-gray-dark-v41">{{starring.quote|truncatechars:350}}</p>
             </div>
-            <p>As a University of Unify graduate, you have access to a wide range of resources, mentoring opportunities,
-              events and support to help you continue your passion for learning.</p>
           </div>
           <a class="btn u-shadow-v39 g-brd-main g-brd-primary--hover g-color-main g-color-white--hover g-bg-primary--hover g-font-size-default g-rounded-30 g-px-35 g-py-11"
-            href="#">Read More</a>
+            href="{% url 'junkiri-detail' starring.id %}">Read More</a>
         </div>
       </div>
     </div>
@@ -124,3 +146,21 @@
    
   </div>
 </div>
+
+<!-- popups -->
+<div class="modal fade" id="register" tabindex="-1" role="dialog" aria-labelledby="commentLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="commentLabel">Oops! Cannot Register.</h5>
+        </div>
+        <div class="modal-body">
+          Development in progress, stay tuned.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- endpopups -->
