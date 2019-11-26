@@ -52,7 +52,7 @@
                     <p class="g-color-gray-dark-v2">{{Junkiri.quote}}</p>
 
                     <div class="text-center g-width-70x--md mx-auto g-my-40">
-                        <h3 class="text-uppercase g-color-primary">If you can design one thing, you can design
+                        <h3 class="text-uppercase g-color-primary">If you can achieve one thing, you can achieve
                             everything. Just believe it.</h3>
                     </div>
                 </div>
@@ -62,37 +62,40 @@
                     <div class="u-heading-v3-1 g-mb-30">
                       <h2 class="h5 u-heading-v3__title g-color-gray-dark-v1 text-uppercase g-brd-primary">Related Articles</h2>
                     </div>
-  
+                    
                     <div class="row">
+                            {% for latest in recent_posts %}
                       <!-- Article Video -->
                       <div class="col-lg-4 col-sm-6 g-mb-30">
                         <article>
                           <figure class="u-shadow-v25 g-pos-rel g-mb-20">
-                            <img class="img-fluid w-100" src="assets/img-temp/400x270/img2.jpg" alt="Image Description">
+                            <img class="img-fluid w-100" src="{{latest.photo.url}}" alt="Image Description">
   
                             <figcaption class="g-pos-abs g-top-10 g-left-10">
-                              <a class="btn btn-xs u-btn-pink text-uppercase rounded-0" href="#!">Spa</a>
+                              <a class="btn btn-xs u-btn-pink text-uppercase rounded-0" href="{% url 'junkiri-detail' latest.id %}">View</a>
                             </figcaption>
                           </figure>
   
                           <h3 class="g-font-size-16 g-mb-10">
-                            <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="#!">Clark Valberg is a new CEO of InVision..</a>
+                            <a class="u-link-v5 g-color-gray-dark-v1 g-color-primary--hover" href="{% url 'junkiri-detail' latest.id %}">{{ latest.quote|truncatechars:30 }}</a>
                           </h3>
                         </article>
                       </div>
                       <!-- End Article Video -->
+                        {% endfor %}
                     </div>
                   </div>
 
             <!-- Comments -->
             <div class="g-mb-60">
                 <div class="u-heading-v3-1 g-mb-30">
-                    <h2 class="h5 u-heading-v3__title g-color-gray-dark-v1 text-uppercase g-brd-primary">24 Comments
+                    <h2 class="h5 u-heading-v3__title g-color-gray-dark-v1 text-uppercase g-brd-primary">Comments
                     </h2>
                 </div>
 
                 <!-- Comment 1 -->
-                <div class="media g-brd-around g-brd-gray-light-v4 rounded g-pa-30 g-mb-20">
+                <h2>Unavailable</h2>
+                <!-- <div class="media g-brd-around g-brd-gray-light-v4 rounded g-pa-30 g-mb-20">
                     <img class="d-flex u-shadow-v25 g-width-50 g-height-50 rounded-circle g-mr-15"
                         src="assets/img-temp/100x100/img9.jpg" alt="Image Description">
 
@@ -132,17 +135,17 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
                 <!-- End Comment 1 -->
 
 
 
-                <div class="text-center g-mt-30">
+                <!-- <div class="text-center g-mt-30">
                     <a class="btn u-btn-outline-primary g-font-size-12 text-uppercase g-px-25 g-py-13" href="#!">
                         <i class="icon-finance-206 u-line-icon-pro align-middle g-pos-rel g-top-1 mr-2"></i> Load More
                         Comments
                     </a>
-                </div>
+                </div> -->
             </div>
             <!-- Comments -->
 
@@ -174,10 +177,10 @@
                             rows="12" placeholder="Your Message"></textarea>
                     </div>
 
-                    <a class="btn u-btn-primary g-font-size-12 text-uppercase g-px-25 g-py-13" href="#!">
-                        <i class="icon-finance-206 u-line-icon-pro align-middle g-pos-rel g-top-1 mr-2"></i> Add a
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#comment">
+                            <i class="icon-finance-206 u-line-icon-pro align-middle g-pos-rel g-top-1 mr-2"></i>   Add a
                         Comment
-                    </a>
+                          </button>
                 </form>
             </div>
             <!-- End Add Comment -->
@@ -232,8 +235,8 @@
                         <h2 class="h5 u-heading-v3__title g-color-gray-dark-v1 text-uppercase g-brd-primary">Top Authors
                         </h2>
                     </div>
-
-                    <article class="media g-mb-35">
+                    <h2>Unavailable</h2>
+                    <!-- <article class="media g-mb-35">
                         <img class="d-flex u-shadow-v25 g-width-40 g-height-40 rounded-circle mr-3"
                             src="assets/img-temp/100x100/img1.jpg" alt="Image Description">
                         <div class="media-body">
@@ -245,7 +248,7 @@
                                 details.</p>
                             <a class="btn u-btn-outline-primary g-font-size-11 text-uppercase" href="#!">Follow</a>
                         </div>
-                    </article>
+                    </article> -->
                 </div>
                 <!-- End Top Authors -->
             </div>
@@ -253,4 +256,21 @@
         <!-- End Sidebar -->
     </div>
 </div>
+<!-- popups -->
+<div class="modal fade" id="comment" tabindex="-1" role="dialog" aria-labelledby="commentLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="commentLabel">Oops! Cannot add comment</h5>
+            </div>
+            <div class="modal-body">
+              Development in progress, stay tuned.
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+            </div>
+          </div>
+        </div>
+      </div>
+<!-- endpopups -->
 {% endblock %}
