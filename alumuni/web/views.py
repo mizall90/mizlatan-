@@ -58,7 +58,7 @@ class Junkiri_DetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(Junkiri_DetailView, self).get_context_data(**kwargs)
-        context['recent_posts'] = Junkiri.objects.all().order_by('-post_dt')[:4]
+        context['recent_posts'] = Junkiri.objects.all().order_by('-post_dt').exclude(id=self.kwargs.get('pk'))[:3]
         return context
 
 
