@@ -3,13 +3,17 @@ from .models import Junkiri, Event, Team
 from django.forms import ModelForm
 from django.utils import timezone
 from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput, DateTimePickerInput, MonthPickerInput, YearPickerInput
-
+from django_summernote.widgets import (SummernoteWidget)    
 
 class JunkiriForm(ModelForm):
 
     class Meta():
         model = Junkiri
         exclude = ('post_dt',)
+        widgets = {
+       'quote': SummernoteWidget(),
+    }
+        
 
    
 
@@ -28,6 +32,7 @@ class EventForm(ModelForm):
         fields = '__all__'
         widgets = {
         # 'start_date': DatePickerInput(), # default date-format %m/%d/%Y will be used
+        'discription': SummernoteWidget(),
         'event_dt': DatePickerInput(format='%Y-%m-%d'), # specify date-frmat
         'event_end_dt': DatePickerInput(format='%Y-%m-%d'), # specify date-frmat
     }
