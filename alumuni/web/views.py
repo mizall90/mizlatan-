@@ -1,13 +1,15 @@
 from django.shortcuts import render
-from .models import Team, Junkiri, Event
+from .models import Team, Junkiri
 from django.views.generic import TemplateView, ListView, DeleteView, DetailView, CreateView, FormView
-from .forms import JunkiriForm, ContactForm, EventForm
+from .forms import JunkiriForm, ContactForm
+from event.forms import EventForm
 import datetime
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
 from django.contrib import messages
 from account.forms import SignupForm, LoginUsernameForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from event.models import Event
 
 
 # Create your views here.
@@ -25,7 +27,7 @@ class IndexView(TemplateView):
         context['presedent'] = Team.objects.get(id=3)
         context['home'] = True
         context['contact_form'] = ContactForm
-        context['events'] = Event.objects.all().exclude(ended=True).order_by('-event_dt')
+        context['events'] = Event.objects.all().order_by('-start_date')
         return context
 
 
@@ -99,30 +101,30 @@ class ContactView(FormView):
 
 
 
-class Event_Create(FormView):
-    template_name = 'web/event_form.html'
-    form_class = EventForm
-    success_url = '/event/list/'
+# class Event_Create(FormView):
+#     template_name = 'web/event_form.html'
+#     form_class = EventForm
+#     success_url = '/event/list/'
 
-    def form_valid(self, form):
-        if form.is_valid():
-            form.save()
-        return super().form_valid(form)
+#     def form_valid(self, form):
+#         if form.is_valid():
+#             form.save()
+#         return super().form_valid(form)
 
-class EventList(ListView):
-    template_name = 'web/event_list.html'
-    model = Event
+# class EventList(ListView):
+#     template_name = 'web/event_list.html'
+#     model = Event
 
-    def get_context_data(self, **kwargs):
-        context = super(EventList, self).get_context_data(**kwargs)
-        if Junkiri.objects.filter(is_starring=True):
-            context['ongoing'] = Event.objects.filter(
-                is_ongoing=True).latest('event_dt')
-        context['events'] = Event.objects.filter(
-            is_upcoming=True).order_by('-event_dt')
-        context['pasts'] = Event.objects.filter(
-            ended=True).order_by('-event_dt')
-        return context
+#     def get_context_data(self, **kwargs):
+#         context = super(EventList, self).get_context_data(**kwargs)
+#         if Junkiri.objects.filter(is_starring=True):
+#             context['ongoing'] = Event.objects.filter(
+#                 is_ongoing=True).latest('event_dt')
+#         context['events'] = Event.objects.filter(
+#             is_upcoming=True).order_by('-event_dt')
+#         context['pasts'] = Event.objects.filter(
+#             ended=True).order_by('-event_dt')
+#         return context
 
 class AdminDash(LoginRequiredMixin, TemplateView):
     template_name ='web/admin_dashboard.html'

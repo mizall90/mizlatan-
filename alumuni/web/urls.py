@@ -1,6 +1,6 @@
 from django.conf.urls import url, include
 from . import views
-from .views import ( IndexView, Junkiri_ListView, Junkiri_DetailView, Junkiri_Create, TeamView, ContactView, Event_Create, EventList, AdminDash, LoginAdminView )
+from .views import ( IndexView, Junkiri_ListView, Junkiri_DetailView, Junkiri_Create, TeamView, ContactView, AdminDash, LoginAdminView )
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -12,8 +12,8 @@ urlpatterns = [
     url(r'^create/$', Junkiri_Create.as_view(), name='junkiri_create'),
     url(r'^team/$', TeamView.as_view(), name='team'),
     url(r'^contact/$', ContactView.as_view(), name='contact'),
-    url(r'^event/list/$', EventList.as_view(), name='event'),
-    url(r'^event/create/$', Event_Create.as_view(), name='event_create'),
+    # url(r'^event/list/$', EventList.as_view(), name='event'),
+    # url(r'^event/create/$', Event_Create.as_view(), name='event_create'),
     url(r'^dashboard/$', AdminDash.as_view(), name='dash'),
     url(r'^login/$', LoginAdminView.as_view(), name='login_as_admin'),
 

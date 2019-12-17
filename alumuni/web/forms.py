@@ -1,5 +1,5 @@
 from django import forms
-from .models import Junkiri, Event, Team
+from .models import Junkiri, Team
 from django.forms import ModelForm
 from django.utils import timezone
 from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput, DateTimePickerInput, MonthPickerInput, YearPickerInput
@@ -25,15 +25,15 @@ class ContactForm(forms.Form):
     phone = forms.CharField(label='Phone', max_length=100)
 
 
-class EventForm(ModelForm):
+# class EventForm(ModelForm):
 
-    class Meta():
-        model = Event
-        fields = '__all__'
-        widgets = {
-        # 'start_date': DatePickerInput(), # default date-format %m/%d/%Y will be used
-        'discription': SummernoteWidget(),
-        'event_dt': DatePickerInput(format='%Y-%m-%d'), # specify date-frmat
-        'event_end_dt': DatePickerInput(format='%Y-%m-%d'), # specify date-frmat
-    }
+#     class Meta():
+#         model = Event
+#         fields = '__all__'
+#         widgets = {
+#         # 'start_date': DatePickerInput(), # default date-format %m/%d/%Y will be used
+#         'discription': SummernoteWidget(),
+#         'event_dt': DatePickerInput(format='%Y-%m-%d'), # specify date-frmat
+#         'event_end_dt': DatePickerInput(format='%Y-%m-%d'), # specify date-frmat
+#     }
         

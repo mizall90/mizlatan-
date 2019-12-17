@@ -56,26 +56,26 @@ class Junkiri(models.Model):
         return '%s' % self.post_title
 
 
-class Event(models.Model):
-    event_dt = models.DateTimeField(blank=True, null=True,verbose_name='Event start date.', help_text='Date should be in YYYY-MM-DD format i.e: 2011-11-11.')
-    event_end_dt = models.DateTimeField(blank=True, null=True,verbose_name='Event end date.', help_text='Date should be in YYYY-MM-DD format i.e: 2011-11-11.')
-    event_title = models.CharField(blank=True, null=True, max_length=100)
-    discription = models.TextField(blank=True, null=True)
-    co_ordinated_by = models.ForeignKey(Team)
-    banner = models.ImageField(
-        upload_to='event/',
-        verbose_name='Event Banner',
-        blank=True, null=True)
-    ended = models.BooleanField(default=False, verbose_name='End Event')
-    is_upcoming = models.BooleanField(
-        default=True, verbose_name="Upcoming Event")
-    is_ongoing = models.BooleanField(
-        default=False, verbose_name="Ongoing Event")
+# class Event(models.Model):
+#     event_dt = models.DateTimeField(blank=True, null=True,verbose_name='Event start date.', help_text='Date should be in YYYY-MM-DD format i.e: 2011-11-11.')
+#     event_end_dt = models.DateTimeField(blank=True, null=True,verbose_name='Event end date.', help_text='Date should be in YYYY-MM-DD format i.e: 2011-11-11.')
+#     event_title = models.CharField(blank=True, null=True, max_length=100)
+#     discription = models.TextField(blank=True, null=True)
+#     co_ordinated_by = models.ForeignKey(Team)
+#     banner = models.ImageField(
+#         upload_to='event/',
+#         verbose_name='Event Banner',
+#         blank=True, null=True)
+#     ended = models.BooleanField(default=False, verbose_name='End Event')
+#     is_upcoming = models.BooleanField(
+#         default=True, verbose_name="Upcoming Event")
+#     is_ongoing = models.BooleanField(
+#         default=False, verbose_name="Ongoing Event")
 
-    def save(self, *args, **kwargs):
-        if self.event_end_dt or self.is_ongoing:
-            self.is_upcoming = False
-            super(Event, self).save(*args, **kwargs)
+#     def save(self, *args, **kwargs):
+#         if self.event_end_dt or self.is_ongoing:
+#             self.is_upcoming = False
+#             super(Event, self).save(*args, **kwargs)
 
-    def __str__(self):
-        return '%s' % self.event_title
+#     def __str__(self):
+#         return '%s' % self.event_title
