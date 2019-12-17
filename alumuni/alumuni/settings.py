@@ -40,11 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django.contrib.humanize',
     'django_summernote',
     'web',
     'bootstrap4',
     'account',
     'bootstrap_datepicker_plus',
+    'event'
 ]
 
 MIDDLEWARE = [
