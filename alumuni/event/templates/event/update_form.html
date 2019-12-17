@@ -1,0 +1,13 @@
+{% extends 'web/base.html' %}
+{% load staticfiles i18n bootstrap4 tz %}
+
+{% block content %}
+<div class="jumbotron">
+  <div class="mx-auto w-50 shadow-sm">
+      <form action="{% url 'update_event' event.id %}" method="post" class="form" autocapitalize="off" enctype='multipart/form-data' novalidate>{% csrf_token %}
+        {% bootstrap_form form %}
+        <input class="mx-auto btn btn-primary btn active w-25" type="submit" value="Update" />
+      </form>
+  </div>
+</div>
+{% endblock content %}

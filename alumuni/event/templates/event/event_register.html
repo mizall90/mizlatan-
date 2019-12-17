@@ -1,0 +1,72 @@
+{% extends 'web/base.html' %}
+{% load staticfiles i18n bootstrap4 tz %}
+
+{% block content %}
+
+<div class="container">
+    {% comment %} <form method="post" action="" autocapitalize="off" enctype='multipart/form-data' novalidate>
+        {% csrf_token %} {% endcomment %}
+        {% comment %} {% bootstrap_form form %} {% endcomment %}
+    
+        {% comment %} <div class="form-group">
+            <label class="control-label" for="id_event">You are registering for {{event_value}}</label>
+            <!-- hidden field from users -->
+            <input class="form-control" id="id_event" maxlength="15" name="event" placeholder="Event" 
+            required="required" value="{{event_value}}" type="hidden">
+            
+            <input class="form-control" id="id_user" maxlength="15" name="user" placeholder="User" 
+            required="required" value="{{event_user}}" type="hidden">
+            <!-- hidden field from users -->
+        </div>
+        
+        {% bootstrap_form form exclude="event, user" %}
+    
+        {% buttons %}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        {% endbuttons %}
+    </form> {% endcomment %}
+    
+    <form method="post" action="" autocapitalize="off" enctype='multipart/form-data' novalidate>
+        {% csrf_token %}
+        <div class="form-group text-center">
+            <label class="control-label" for="id_event"><h2>You are registering for {{event_value}}</h2></label>
+            <!-- hidden field from users -->
+            <input class="form-control" id="id_event" maxlength="15" name="event" placeholder="Event" 
+            required="required" value="{{event_value}}" type="hidden">
+            
+            <input class="form-control" id="id_user" maxlength="15" name="user" placeholder="User" 
+            required="required" value="{{event_user}}" type="hidden">
+            <!-- hidden field from users -->
+        </div>
+        {% bootstrap_form form exclude='event, user, dietery_requirements, comments' %}
+        <label class="control-label" for="id_event">Dietary requirements</label><br>
+        <div class="checkbox">
+            <label for="id_dietery_requirements_0"><input name="dietery_requirements_Vegan" title="" type="checkbox" value="Vegan"> Vegan</label><br>
+        </div>
+        <div class="checkbox">
+            <label for="id_dietery_requirements_0"><input name="dietery_requirements_Vegetarian" title="" type="checkbox" value="Vegetarian"> Vegetarian</label><br>
+        </div>
+        <div class="checkbox">
+            <label for="id_dietery_requirements_0"><input name="dietery_requirements_Kosher" title="" type="checkbox" value="Kosher"> Kosher</label><br>
+        </div>
+        <div class="checkbox">
+            <label for="id_dietery_requirements_0"><input name="dietery_requirements_Allergic" title="" type="checkbox" value="Allergic to nuts"> Allergic to nuts</label><br>
+        </div>
+        <div class="checkbox">
+            <label for="id_dietery_requirements_0"><input name="dietery_requirements_Lactose" title="" type="checkbox" value="Lactose"> Lactose</label><br>
+        </div>
+        <div class="checkbox">
+            <label for="id_dietery_requirements_0"><input name="dietery_requirements_None" title="" type="checkbox" value="I don't have any restrictions"> I don't have any restrictions</label>
+        </div>
+        <div class="checkbox">Others(Please Specify)
+            <input type="text" class="form-control" name="others" placeholder="Please Specify">
+        </div>
+        {% bootstrap_field form.comments %}
+        {% buttons %}
+            <button type="submit" class="btn btn-primary">Submit</button>
+        {% endbuttons %}
+    </form>
+</div>
+
+
+{% endblock content %}

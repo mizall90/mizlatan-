@@ -1,0 +1,85 @@
+{% extends 'web/base.html' %}
+{% load static %}
+{% load i18n bootstrap4 tz %}
+
+{% block content %}
+<script type="text/javascript" src="//highlightjs.org/static/highlight.pack.js"></script>
+
+<!-- Upcoming Events -->
+<div class="row">
+    <div class="col-sm-12"> 
+        <h2>{% trans 'Upcoming Events' %}</h2> 
+    </div>
+    {% for event in events %}
+    <div class="col-sm-4">
+        <div class="event-card">
+            <section class="event-body">
+                <a tabindex="-1" href="{% url 'event_detail' event.id %}">
+                    <div class="image-wrapper">
+                        <img class="list-thumbnail" src="{{event.banner.url}}" onerror="this.src='/static/img/bg.jpg'" alt="{{event.title}}">
+                    </div>
+                </a>
+                <main class="main-body">
+                    <a tabindex="0" href="{% url 'event_detail' event.id %}">
+                        <div class="event-title">
+                            <h4><b>{{event.title}}</b></h4>
+                        </div>
+                    </a>
+                    <div class="event-venue">
+                        <p class="text-muted text-left">{{event.venue.title}} <br>{{event.venue.address|truncatechars:40}}</p>
+                    </div>
+                </main>
+            </section>
+        </div>
+    </div> 
+    {% empty %}
+    <div class='row'>
+        <strong>No Events.</strong>
+    </div>
+    {% endfor %}
+</div>
+<!-- End Upcoming Events -->
+
+<!-- Past Events -->
+{%if past_events %}
+
+<div class="row">
+    <div class="col-sm-12"> 
+        <h2>{% trans 'Past Events' %}</h2>
+    </div>
+    {% for event in past_events %}
+    <div class="col-sm-4">
+        <div class="event-card">
+            <section class="event-body">
+                <a tabindex="-1" href="{% url 'event_detail' event.id %}">
+                    <div class="image-wrapper">
+                        <img class="list-thumbnail" src="{{event.banner.url}}" onerror="this.src='/static/img/bg.jpg'" alt="{{event.title}}">
+                    </div>
+                </a>
+                <main class="main-body">
+                    <a tabindex="0" href="{% url 'event_detail' event.id %}">
+                        <div class="event-title">
+                            <h4><b>{{event.title}}</b></h4>
+                        </div>
+                    </a>
+                    <div class="event-venue">
+                        <p class="text-muted text-left">{{event.venue.title}} <br>{{event.venue.address|truncatechars:40}}</p>
+                    </div>
+                </main>
+            </section>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endif %}
+<!-- End Past Events -->
+
+
+{% endblock content %}
+
+{% comment %} {% if user.is_superuser %}
+{% if user == event.creator %}
+<a class="btn btn-secondary" href="{% url 'update_event' event.id %}" role="button">{% trans 'Update' %}</a>
+<a class="btn btn-danger" href="{% url 'delete_event' event.id %}" role="button">{% trans 'Delete' %}</a>
+{% endif %}
+{% endif %} {% endcomment %}

@@ -1,0 +1,15 @@
+
+{% extends 'base.html' %}
+{% load staticfiles i18n bootstrap4 %}
+
+{% block content %}
+<div class="jumbotron">
+  <div class="mx-auto w-50 shadow-sm">
+      <form action="{% url 'delete_event' event.id %}" method="post" class="form" autocapitalize="off" enctype='multipart/form-data' novalidate>{% csrf_token %}
+        <p>Are you sure you want to delete "{{ event }}"?</p>
+        <input class="mx-auto btn btn-danger btn active w-25" type="submit" value="Confirm" />
+      </form>
+  </div>
+</div>
+{% endblock content %}
+  
