@@ -1,4 +1,5 @@
 {% extends 'web/base.html' %}
+{% load bootstrap4 %}
 {% load static %}
 {% block content %}
  
@@ -15,7 +16,7 @@
     <div class="row">
         <div class="col-md-4 col-sm-5">
             <div class="thumbnail-img">
-                <img src="#" title="img_title">
+                <!-- <img src="#" style="width: 200px; height:200px;" title="img_title"> -->
             </div>
 
             <ul role="tablist" id="tabmenu" class="nav-refresh nav-tabs-refresh list-group">
@@ -36,11 +37,12 @@
                 </div>
 
                 <div role="tabpanel" class="tab-pane " id="event">
-                 {% include 'event/event_create.html' %}
+                    <h1>Event</h1>
+                    
                 </div>
 
                 <div role="tabpanel" class="tab-pane " id="test3">
-                    <h2>test3</h2>
+                    <h2>Test</h2>
                 </div>
 
             </div>

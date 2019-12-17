@@ -2,7 +2,6 @@ from django.shortcuts import render
 from .models import Team, Junkiri
 from django.views.generic import TemplateView, ListView, DeleteView, DetailView, CreateView, FormView
 from .forms import JunkiriForm, ContactForm
-from event.forms import EventForm
 import datetime
 from django.core.mail import send_mail
 from django.http import HttpResponseRedirect
@@ -10,6 +9,8 @@ from django.contrib import messages
 from account.forms import SignupForm, LoginUsernameForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from event.models import Event
+from event.forms import EventForm
+
 
 
 # Create your views here.
@@ -28,6 +29,7 @@ class IndexView(TemplateView):
         context['home'] = True
         context['contact_form'] = ContactForm
         context['events'] = Event.objects.all().order_by('-start_date')
+        context['now'] = datetime.datetime.now()
         return context
 
 
@@ -60,7 +62,7 @@ class Junkiri_DetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(Junkiri_DetailView, self).get_context_data(**kwargs)
-        context['recent_posts'] = Junkiri.objects.all().order_by('-post_dt').exclude(id=self.kwargs.get('pk'))[:3]
+        context['recent_posts'] = Junkiri.objects.all().order_by('-post_dt').exclude(id=self.kwargs.get('pk'))[:10]
         return context
 
 
@@ -142,5 +144,5 @@ class LoginAdminView(TemplateView):
 
     def get_context_data(self, **kwargs):
             context = super(LoginAdminView, self).get_context_data(**kwargs)
-            context['login_form'] = LoginUsernameForm
+            context['login_form'] = LoginUsernameForm 
             return context

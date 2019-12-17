@@ -9,109 +9,114 @@
 {% block content %}
 
 <div class="container-fluid">
-<!-- Banner row -->
-<div class="row border">
-    <div class="col-sm-9" style="padding: 0;">
-            <img class="img img-responsive center-block detail-thumbnail" src="{{event.banner.url}}" onerror="this.src='/static/img/bg.jpg'"
-            alt="{{ event.title }}">
+    <!-- Banner row -->
+    <div class="row border">
+        <div class="col-sm-9" style="padding: 0;">
+            <img class="img img-responsive center-block detail-thumbnail" src="{{event.banner.url}}"
+                onerror="this.src='/static/img/bg.jpg'" alt="{{ event.title }}">
         </div>
         <div class="col-sm-3">
             <div class="event-info">
                 <div class="card-body">
                     <p class="text-muted">{{ event.event_date }}</p>
                     <h1 class="card-title">{{ event.title }}</h1>
-                    {% comment %} <p class="text-muted">{% trans 'by' %} {{ event.creator|capfirst }}</p> {% endcomment %}
+                    {% comment %} <p class="text-muted">{% trans 'by' %} {{ event.creator|capfirst }}</p>
+                    {% endcomment %}
                 </div>
                 <div class="register-button">
-                <!-- for past events -->
-                {% if event.id in past_events %}
-                <a class="btn btn-block btn-danger" disabled>{% trans 'Registration Closed' %}</a>
-                {% else %}
-                <!-- for upcoming events -->
+                    <!-- for past events -->
+                    {% if event.id in past_events %}
+                    <a class="btn btn-block btn-danger" disabled>{% trans 'Registration Closed' %}</a>
+                    {% else %}
+                    <!-- for upcoming events -->
                     {% if user.is_authenticated %}
-                        {% if user.id in event.get_attendees %}
-                            <a class="btn btn-block btn-primary" disabled>{% trans 'Already Checked In' %}</a>
-                        {% else %}
-                            {%if event.registration_limit == event.total_attendees  %}
-                                <a class="btn btn-block btn-danger" disabled>{% trans 'Registration Closed' %}</a>
-                                {% else %}
-                                <a href="{% url 'register' event.id %}" class="btn btn-block btn-primary">{% trans 'Register' %}</a>
-                            {% endif %}
-                        {% endif %}
+                    {% if user.id in event.get_attendees %}
+                    <a class="btn btn-block btn-primary" disabled>{% trans 'Already Checked In' %}</a>
+                    {% else %}
+                    {%if event.registration_limit == event.total_attendees  %}
+                    <a class="btn btn-block btn-danger" disabled>{% trans 'Registration Closed' %}</a>
+                    {% else %}
+                    <a href="{% url 'register' event.id %}" class="btn btn-block btn-primary">{% trans 'Register' %}</a>
+                    {% endif %}
+                    {% endif %}
                     {%else%}
-                        {%if event.registration_limit == event.total_attendees  %}
-                            <a class="btn btn-block btn-danger" disabled>{% trans 'Registration Closed' %}</a>
-                            {% else %}
-                            <a href="{% url 'register' event.id %}" class="btn btn-block btn-primary">{% trans 'Register' %}</a>
-                        {% endif%}
-                    
+                    {%if event.registration_limit == event.total_attendees  %}
+                    <a class="btn btn-block btn-danger" disabled>{% trans 'Registration Closed' %}</a>
+                    {% else %}
+                    <a href="{% url 'register' event.id %}" class="btn btn-block btn-primary">{% trans 'Register' %}</a>
+                    {% endif%}
+
                     {%endif%}
-                {%endif%}
+                    {%endif%}
                 </div>
             </div>
         </div>
     </div>
-    
-<!-- Register row -->
-{% comment %} <div class="row event-register">
-    <div class="col-sm-9">
-        <div class="icon-section">
-            <i class="fa fa fa-heart-o" style="font-size:24px"></i>
-            <i class="fa fa fa-share-square-o" style="font-size:24px"></i>
+
+    <!-- Register row -->
+    {% comment %} <div class="row event-register">
+        <div class="col-sm-9">
+            <div class="icon-section">
+                <i class="fa fa fa-heart-o" style="font-size:24px"></i>
+                <i class="fa fa fa-share-square-o" style="font-size:24px"></i>
+            </div>
         </div>
-    </div>
-    <div class="col-sm-3">
-        {% if user.id in event.get_attendees %}
-            <a class="btn btn-block btn-primary" >{% trans 'Already Checked In' %}</a>
-        {% else %}
+        <div class="col-sm-3">
+            {% if user.id in event.get_attendees %}
+            <a class="btn btn-block btn-primary">{% trans 'Already Checked In' %}</a>
+            {% else %}
             <a href="{% url 'register' event.id %}" class="btn btn-block btn-primary">{% trans 'Register' %}</a>
-        {% endif %}
-    </div>
-</div> {% endcomment %}
-
-<!-- Register row -->
-<div class="row" style="margin-top: 5%;">
-
-
-    <div class="col-sm-9">
-        <div class="col-sx-12" id="description">
-            <h4>{% trans 'About this Event' %}</h4>
-            <div class="text-justify">{{ event.description|safe}}</div>
+            {% endif %}
         </div>
-    </div>
-    
-    <div class="col-sm-3 event-detail">
-    {% if event.attachments %}
-    <a href="{{ event.attachments.url}}" class="btn btn-success">
-        <span><i class="fa fa-paperclip" aria-hidden="true"></i> {{event.attachments.name|cut:"uploads/"|truncatechars:17}} </span>
-    </a>
-    {% endif %}
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-text text-muted"><b>{% trans 'Date And Time' %}</b></h5>
-                <p>
-                 <!-- {{ event.start_date }}<br> -->
-                 {{ event.start_date|date:'d M, Y, h:i A' }} - {{ event.end_date|date:'d M, Y, h:i A'}}</p>
-            </div>
+    </div> {% endcomment %}
 
-            <div class="card-body">  
-                <h5 class="card-text text-muted"><b>{% trans 'Location' %}</b></h5>
-                <p>
-                 {{ event.venue.title }}<br>
-                 {{ event.venue.address }} </p>
-            </div>
-                
-            <div class="card-body">  
-                <h5 class="card-text text-muted"><b>{% trans 'Contact' %}</b></h5>
-                <p>
-                 {{ event.venue.contact_number  }}</p>
+    <!-- Register row -->
+    <div class="row" style="margin-top: 5%;">
+
+
+        <div class="col-sm-9">
+            <div class="col-sx-12" id="description">
+                <div class="u-heading-v3-1 g-mb-30">
+                    <h2 class="h5 u-heading-v3__title g-color-gray-dark-v1 text-uppercase g-brd-primary">
+                        {% trans 'About this Event' %}</h2>
+                </div>
+                <div class="text-justify">{{ event.description|safe}}</div>
             </div>
         </div>
-        {% comment %} <a href="#" class="btn btn-primary">{% trans 'Join event' %}</a> {% endcomment %}
-        
-    </div>
 
-</div>
+        <div class="col-sm-3 event-detail">
+            {% if event.attachments %}
+            <a href="{{ event.attachments.url}}" class="btn btn-success">
+                <span><i class="fa fa-paperclip" aria-hidden="true"></i>
+                    {{event.attachments.name|cut:"uploads/"|truncatechars:17}} </span>
+            </a>
+            {% endif %}
+            <div class="card" style="border: none;">
+                <div class="card-body">
+                    <h5 class="card-text text-muted"><b>{% trans 'Date And Time' %}</b></h5>
+                    <p>
+                        <!-- {{ event.start_date }}<br> -->
+                        {{ event.start_date|date:'d M, Y, h:i A' }} - {{ event.end_date|date:'d M, Y, h:i A'}}</p>
+                </div>
+
+                <div class="card-body">
+                    <h5 class="card-text text-muted"><b>{% trans 'Location' %}</b></h5>
+                    <p>
+                        {{ event.venue.title }}<br>
+                        {{ event.venue.address }} </p>
+                </div>
+
+                <div class="card-body">
+                    <h5 class="card-text text-muted"><b>{% trans 'Contact' %}</b></h5>
+                    <p>
+                        {{ event.venue.contact_number  }}</p>
+                </div>
+            </div>
+            {% comment %} <a href="#" class="btn btn-primary">{% trans 'Join event' %}</a> {% endcomment %}
+
+        </div>
+
+    </div>
 
 </div>
 

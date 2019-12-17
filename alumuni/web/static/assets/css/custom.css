@@ -54,4 +54,13 @@
     box-sizing: border-box
 }
 
+.ScrollStyle
+{
+    max-height: 300px;
+    overflow-y: scroll;
+}
 
+/* .mh-600{
+    max-height: 600px;
+    overflow-y: scroll;
+} */
