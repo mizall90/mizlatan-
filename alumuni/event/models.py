@@ -3,6 +3,7 @@ from django.db import models
 from django.conf import settings
 
 from django.contrib.auth.models import User
+from django_google_maps import fields as map_fields
 
 GUESS_LIMIT = [(0, u"No limit")] + list(zip(range(1,100), range(1,100)))
 STATUS_CHOICES = (
@@ -32,8 +33,10 @@ class EventBaseModel(models.Model):
 
 class Venue(EventBaseModel):
     title = models.CharField(max_length=200, unique=False)
-    address = models.CharField(max_length=200, unique=False)
+    address = models.TextField(blank=True, null=True)
     contact_number = models.CharField(max_length=50, unique=False)
+    # address = map_fields.AddressField(max_length=200)
+    # geolocation = map_fields.GeoLocationField(max_length=100, blank=True, null=True)
 
 
 class Event(EventBaseModel):

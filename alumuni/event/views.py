@@ -16,13 +16,15 @@ from django.db.models import Q
 from django.views.generic import ListView, DetailView, UpdateView, DeleteView
 from django.views.generic.edit import CreateView
 
-from .models import Event, EventRegistration
-from .forms import EventForm, EventRegistrationForm
+from .models import Event, EventRegistration, Venue
+from .forms import EventCreateForm, EventRegistrationForm, VenueCreateForm
 #from emailtemplate.models import EmailTemplate
 
 from datetime import datetime
 from django.utils import timezone
 from .mixins import PermissionMixin
+from web.forms import JunkiriForm
+from django.contrib.messages.views import SuccessMessageMixin
 # Create your views here.
 
 
@@ -258,7 +260,7 @@ class DeclineRegistration(LoginRequiredMixin, DetailView):
 
 class EventCreate(LoginRequiredMixin, CreateView):
     model = Event
-    form_class = EventForm
+    form_class = EventCreateForm
     template_name = 'event/event_create.html'
     success_url = reverse_lazy('event_list')
 
@@ -266,10 +268,15 @@ class EventCreate(LoginRequiredMixin, CreateView):
         kwargs = super(EventCreate, self).get_form_kwargs()
         kwargs['user'] = self.request.user
         return kwargs
+    
+    def get_context_data(self, **kwargs):
+        context = super(EventCreate, self).get_context_data(**kwargs)
+        return context
+    
 
 class EventUpdate(PermissionMixin, UpdateView):
     model = Event
-    form_class = EventForm
+    form_class = EventCreateForm
     success_url = reverse_lazy('event_list')
     template_name = 'event/update_form.html'
     template_name_suffix = '_update_form'
@@ -298,3 +305,21 @@ class EventRegister(LoginRequiredMixin, CreateView):
     model = EventRegistration
     form_class = EventRegistrationForm
     template_name = 'event/event_register.html'
+
+
+class VenuDetailView(DetailView):
+    model =  Venue
+    template_name = 'event/venue.html'
+    context_object_name = 'venue'
+
+class VenueCreate(SuccessMessageMixin, LoginRequiredMixin, CreateView):
+    model = Venue
+    form_class = VenueCreateForm
+    template_name = 'event/venue_create.html'
+    success_url = reverse_lazy('dash')
+    success_message = "Venue successfully created!"
+    
+    def get_context_data(self, **kwargs):
+        context = super(VenueCreate, self).get_context_data(**kwargs)
+        return context
+    

@@ -1,14 +1,20 @@
-{% extends 'web/base.html' %}
 {% load staticfiles i18n bootstrap4 tz %}
 
 {% block content %}
-<div class="container">
-        <form action="" method="post" class="form" autocapitalize="off" enctype='multipart/form-data' novalidate>
-            {% csrf_token %}
-            {% bootstrap_form form %}
-            {% buttons %}
-            <button class="btn u-shadow-v33 g-color-white g-bg-primary g-bg-main--hover g-px-25 g-py-13 mr-2" type="submit">Save</button>
-            {% endbuttons %}
-        </form>
+
+<div class="u-heading-v3-1 g-mb-30">
+    <h2 class="h5 u-heading-v3__title g-color-gray-dark-v1 text-uppercase g-brd-primary">Add Event</h2>
 </div>
+
+<form action="{% url 'add_event' %}" method="post" class="form" autocapitalize="off" enctype='multipart/form-data'
+    novalidate>
+    {% csrf_token %}
+    {% bootstrap_form event_form %}
+    {% buttons %}
+    <button class="btn u-shadow-v33 g-color-white g-bg-primary g-bg-main--hover g-px-25 g-py-13 mr-2"
+        type="submit">Save</button>
+    {% endbuttons %}
+</form>
+
+
 {% endblock content %}

@@ -1,0 +1,59 @@
+{% extends 'web/base.html' %}
+{% load staticfiles i18n bootstrap4 tz %}
+{% load humanize %}
+
+{% block content %}
+<div class="g-bg-img-hero g-pos-rel">
+    <div class="container mb-5 g-pt-100">
+        <div class="row justify-content-lg-between">
+            <div class="col-lg-4 g-pt-50--lg">
+                <div class="mb-5">
+                    <h1 class="g-font-size-45 mb-4">Welcome Back!</h1>
+                    <div class="media align-items-center mb-4">
+                        <div class="d-flex mr-3">
+                            <span
+                                class="u-icon-v3 u-icon-size--xs g-color-primary g-bg-primary-opacity-0_1 rounded-circle">
+                                <i class="fa fa-map-marker"></i>
+                            </span>
+                        </div>
+                        <div class="media-body">
+                            <span>{{ venue.title }}</span>
+                        </div>
+                    </div>
+                    <div class="media align-items-center mb-4">
+                        <div class="d-flex mr-3">
+                            <span
+                                class="u-icon-v3 u-icon-size--xs g-color-primary g-bg-primary-opacity-0_1 rounded-circle">
+                                <i class="fa fa-envelope-open"></i>
+                            </span>
+                        </div>
+                        <div class="media-body">
+                            <span>support@unify.com</span>
+                        </div>
+                    </div>
+                    <div class="media align-items-center">
+                        <div class="d-flex mr-3">
+                            <span
+                                class="u-icon-v3 u-icon-size--xs g-color-primary g-bg-primary-opacity-0_1 rounded-circle">
+                                <i class="fa fa-phone"></i>
+                            </span>
+                        </div>
+                        <div class="media-body">
+                            <span>{{venue.contact_number}}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <a class="js-go-to btn u-shadow-v33 g-hidden-md-down g-color-white g-bg-primary g-bg-main--hover g-rounded-30 g-px-35 g-py-10 animated js-animation-was-fired undefined"
+                    href="#!" data-target="#content" style="display: inline-block;">Explore Now</a> -->
+            </div>
+
+            <div class="col-lg-8">
+                <div class="u-shadow-v40 g-brd-around">
+                    {{ venue.address|safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
