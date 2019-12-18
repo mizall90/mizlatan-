@@ -52,7 +52,7 @@
 
                     <p class="g-color-gray-dark-v2">{{Junkiri.quote|safe}}</p>
 
-                    
+
                 </div>
             </article>
 
@@ -143,38 +143,45 @@
                     <h2 class="h5 u-heading-v3__title g-color-gray-dark-v1 text-uppercase g-brd-primary">Related
                         Articles</h2>
                 </div>
-                
+
 
                 <div class="row">
-                    {% for latest in recent_posts %}
+                    {% for latest in junkiri_related %}
                     <!-- Article Video -->
                     <div class="col-lg-4 col-sm-6 g-mb-30">
-                            <div class="event-card">
-                                    <section class="event-body">
-                                        <a tabindex="-1" href="{% url 'junkiri-detail' latest.id %}">
-                                            <div class="image-wrapper">
-                                                <img class="list-thumbnail" src="{{latest.photo.url}}"
-                                                    onerror="this.src='/static/img/bg.jpg'" alt="{{latest.title}}">
-                                            </div>
-                                        </a>
-                                        <main class="main-body">
-                                            <a tabindex="0" href="{% url 'junkiri-detail' latest.id %}">
-                                                <div class="event-title">
-                                                    <h4><b>{{latest.post_title}}</b></h4>
-                                                </div>
-                                            </a>
-                                            <div class="event-venue">
-                                                <p class="text-muted text-left">{{latest.author_name}}
-                                                        <br>{{latest.quote|truncatechars:50}} {% if latest.quote|length > 50 %} <a href="{% url 'junkiri-detail' latest.id %}">Read more..</a> {% endif %}
-                                                </p>
-                                            </div>
-                                        </main>
-                                    </section>
-                                </div>
+                        <div class="event-card">
+                            <section class="event-body">
+                                <a tabindex="-1" href="{% url 'junkiri-detail' latest.id %}">
+                                    <div class="image-wrapper">
+                                        <img class="list-thumbnail" src="{{latest.photo.url}}"
+                                            onerror="this.src='/static/img/bg.jpg'" alt="{{latest.title}}">
+                                    </div>
+                                </a>
+                                <main class="main-body">
+                                    <a tabindex="0" href="{% url 'junkiri-detail' latest.id %}">
+                                        <div class="event-title">
+                                            <h4><b>{{latest.post_title}}</b></h4>
+                                        </div>
+                                    </a>
+                                    <div class="event-venue">
+                                        <p class="text-muted text-left">{{latest.author_name}}
+                                            <br>{{latest.quote|truncatechars:50}} {% if latest.quote|length > 50 %} <a
+                                                href="{% url 'junkiri-detail' latest.id %}">Read more..</a> {% endif %}
+                                        </p>
+                                    </div>
+                                </main>
+                            </section>
+                        </div>
                     </div>
                     <!-- End Article Video -->
                     {% endfor %}
                 </div>
+                <div class="row" style="text-align: center;">
+                    <div class="col-sm-12">
+                        {% bootstrap_pagination page=junkiri_related %}
+                    </div>
+                </div>
+
 
             </div>
 
@@ -294,8 +301,8 @@
             <div class="modal-footer">
                 <div class="modal-footer">
                     <a class="btn u-shadow-v33 g-color-white g-color-white--hover g-bg-primary g-bg-main--hover g-rounded-30 g-px-25 g-py-10"
-                      href="#" data-dismiss="modal">OK</a>
-                  </div>
+                        href="#" data-dismiss="modal">OK</a>
+                </div>
             </div>
         </div>
     </div>

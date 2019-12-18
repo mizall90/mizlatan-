@@ -23,17 +23,3 @@ class ContactForm(forms.Form):
     subject = forms.CharField(label='Subject', max_length=100)
     email = forms.EmailField(label='Email', max_length=100)
     phone = forms.CharField(label='Phone', max_length=100)
-
-
-# class EventForm(ModelForm):
-
-#     class Meta():
-#         model = Event
-#         fields = '__all__'
-#         widgets = {
-#         # 'start_date': DatePickerInput(), # default date-format %m/%d/%Y will be used
-#         'discription': SummernoteWidget(),
-#         'event_dt': DatePickerInput(format='%Y-%m-%d'), # specify date-frmat
-#         'event_end_dt': DatePickerInput(format='%Y-%m-%d'), # specify date-frmat
-#     }
-        

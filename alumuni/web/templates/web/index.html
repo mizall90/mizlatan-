@@ -143,7 +143,7 @@
           <div class="col-md-9 col-lg-8 g-mb-30 g-mb-0--lg">
             <h3 class="h5 g-font-primary g-font-weight-500 mb-1">{{event.title}}</h3>
             <p>{{event.discription|truncatechars:200}}</p>
-            <a class="d-inline-block u-link-v5 g-color-text-light-v1 g-color-primary--hover" href="#">
+            <a class="d-inline-block u-link-v5 g-color-text-light-v1 g-color-primary--hover" href="{% url 'event_venue' event.venue.id %}">
               <i class="align-middle g-color-primary mr-2 icon-real-estate-027 u-line-icon-pro"></i>
               {{ event.venue.title }}
             </a>

@@ -2,7 +2,7 @@
 {% load bootstrap4 %}
 {% load static %}
 {% block content %}
- 
+
 <br>
 <!-- Heading -->
 <div class="text-uppercase text-center u-heading-v2-4--bottom g-brd-primary">
@@ -22,10 +22,10 @@
             <ul role="tablist" id="tabmenu" class="nav-refresh nav-tabs-refresh list-group">
                 <li class="list-group-item"><a href="#junkiri" aria-controls="junkiri" role="tab" data-toggle="tab"> Add
                         Junkiri </a></li>
+                <li class="list-group-item"><a href="#venue" aria-controls="venue" role="tab" data-toggle="tab">
+                        Add Venue </a></li>
                 <li class="list-group-item"><a href="#event" aria-controls="event" role="tab" data-toggle="tab">
                         Create Event </a></li>
-                <li class="list-group-item"><a href="#test3" aria-controls="test3" role="tab" data-toggle="tab">
-                        Test </a></li>
 
             </ul>
         </div>
@@ -37,23 +37,23 @@
                 </div>
 
                 <div role="tabpanel" class="tab-pane " id="event">
-                    <h1>Event</h1>
-                    
+                    {% include 'event/event_create.html' %}
+
                 </div>
 
-                <div role="tabpanel" class="tab-pane " id="test3">
-                    <h2>Test</h2>
+                <div role="tabpanel" class="tab-pane " id="venue">
+                    {% include 'event/venue_create.html' %}
                 </div>
 
             </div>
         </div>
     </div>
-   
+
 </div>
 
 
 
-    
+
 </div>
 
 {% endblock %}

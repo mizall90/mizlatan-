@@ -9,15 +9,14 @@ from django.contrib import messages
 from account.forms import SignupForm, LoginUsernameForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from event.models import Event
-from event.forms import EventForm
-
+from event.forms import EventCreateForm, VenueCreateForm
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 # Create your views here.
 
 class IndexView(TemplateView):
     template_name = 'web/home.html'
-    
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
@@ -47,11 +46,25 @@ class Junkiri_Create(FormView):
 class Junkiri_ListView(ListView):
     template_name = 'web/junkiri_list.html'
     model = Junkiri
-
+    
     def get_context_data(self, **kwargs):
         context = super(Junkiri_ListView, self).get_context_data(**kwargs)
-        context['Junkiri'] = Junkiri.objects.filter(
+        junkiri_list = Junkiri.objects.filter(
             publish=True).order_by('post_dt')
+
+
+         # '10' is no of articles to be shown in a page
+        paginator = Paginator(junkiri_list, 6)
+        page = self.request.GET.get('page')
+        try:
+            junkiri = paginator.page(page)
+        except PageNotAnInteger:
+            junkiri = paginator.page(1)
+        except EmptyPage:
+            junkiri = paginator.page(paginator.num_pages)
+
+
+        context['Junkiri'] = junkiri
         return context
 
 
@@ -63,6 +76,20 @@ class Junkiri_DetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(Junkiri_DetailView, self).get_context_data(**kwargs)
         context['recent_posts'] = Junkiri.objects.all().order_by('-post_dt').exclude(id=self.kwargs.get('pk'))[:10]
+        junkiri_list = Junkiri.objects.all().order_by('-post_dt').exclude(id=self.kwargs.get('pk'))[:10]
+
+
+         # '10' is no of articles to be shown in a page
+        paginator = Paginator(junkiri_list, 6)
+        page = self.request.GET.get('page')
+        try:
+            junkiri = paginator.page(page)
+        except PageNotAnInteger:
+            junkiri = paginator.page(1)
+        except EmptyPage:
+            junkiri = paginator.page(paginator.num_pages)
+
+        context['junkiri_related'] = junkiri
         return context
 
 
@@ -102,39 +129,14 @@ class ContactView(FormView):
         return super().form_valid(form)
 
 
-
-# class Event_Create(FormView):
-#     template_name = 'web/event_form.html'
-#     form_class = EventForm
-#     success_url = '/event/list/'
-
-#     def form_valid(self, form):
-#         if form.is_valid():
-#             form.save()
-#         return super().form_valid(form)
-
-# class EventList(ListView):
-#     template_name = 'web/event_list.html'
-#     model = Event
-
-#     def get_context_data(self, **kwargs):
-#         context = super(EventList, self).get_context_data(**kwargs)
-#         if Junkiri.objects.filter(is_starring=True):
-#             context['ongoing'] = Event.objects.filter(
-#                 is_ongoing=True).latest('event_dt')
-#         context['events'] = Event.objects.filter(
-#             is_upcoming=True).order_by('-event_dt')
-#         context['pasts'] = Event.objects.filter(
-#             ended=True).order_by('-event_dt')
-#         return context
-
 class AdminDash(LoginRequiredMixin, TemplateView):
     template_name ='web/admin_dashboard.html'
 
     def get_context_data(self, **kwargs):
         context = super(AdminDash, self).get_context_data(**kwargs)
         context['form'] = JunkiriForm
-        context['event_form'] = EventForm
+        context['event_form'] = EventCreateForm
+        context['venue_form'] = VenueCreateForm
         context['dashboard'] = True
         return context
 
