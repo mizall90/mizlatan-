@@ -32,8 +32,11 @@
                             </div>
                         </a>
                         <div class="event-venue">
-                            <p class="text-muted text-left">{{event.venue.title}}
-                                <br>{{event.venue.address|truncatechars:40}}</p>
+                            <a class="d-inline-block u-link-v5 g-color-text-light-v1 g-color-primary--hover"
+                                href="{% url 'event_venue' event.venue.id %}">
+                                <i class="align-middle g-color-primary mr-2 icon-real-estate-027 u-line-icon-pro"></i>
+                                {{ event.venue.title }}
+                            </a>
                         </div>
                     </main>
                 </section>
@@ -41,11 +44,11 @@
         </div>
         {% empty %}
         <!-- <div class='row'> -->
-            <strong>No Events.</strong>
+        <strong>No Events.</strong>
         <!-- </div> -->
         {% endfor %}
     </div>
-        
+
     <!-- End Upcoming Events -->
 
     <!-- Past Events -->
@@ -76,8 +79,13 @@
                             </div>
                         </a>
                         <div class="event-venue">
-                            <p class="text-muted text-left">{{event.venue.title}}
-                                <br>{{event.venue.address|truncatechars:40}}</p>
+                            <p class="text-muted text-left"><a
+                                    class="d-inline-block u-link-v5 g-color-text-light-v1 g-color-primary--hover"
+                                    href="{% url 'event_venue' event.venue.id %}">
+                                    <i
+                                        class="align-middle g-color-primary mr-2 icon-real-estate-027 u-line-icon-pro"></i>
+                                    {{ event.venue.title }}
+                                </a></p>
                         </div>
                     </main>
                 </section>

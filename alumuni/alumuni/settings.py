@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'bootstrap4',
     'account',
     'bootstrap_datepicker_plus',
-    'event'
+    'event',
+    # 'django_google_maps',
 ]
 
 MIDDLEWARE = [
@@ -71,7 +72,8 @@ BOOTSTRAP4 = {
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
+        # 'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -138,12 +140,16 @@ EMAIL_HOST_USER = 'newzenithalumni@gmail.com'
 EMAIL_HOST_PASSWORD = 'newzenithalumniassociation'
 EMAIL_PORT = 587
 
+# Google API KEY
+# GOOGLE_MAPS_API_KEY='AIzaSyCZT2yqNRCtI-s9lJsdpGweOQbRVgj1X9Y'
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATIC_ROOT = os.path.join(BASE_DIR, 'collectstatic')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
