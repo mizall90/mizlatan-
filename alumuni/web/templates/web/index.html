@@ -221,11 +221,13 @@
                   </a>
                 </li>
               </ul>
-              <p class="g-color-gray-dark-v41">{{starring.quote|truncatechars:350}}</p>
+              <p class="g-color-gray-dark-v41">{{starring.quote|truncatechars:650}}</p>
             </div>
           </div>
+          {% if starring.quote|length > 650 %}
           <a class="btn u-shadow-v39 g-brd-main g-brd-primary--hover g-color-main g-color-white--hover g-bg-primary--hover g-font-size-default g-rounded-30 g-px-35 g-py-11"
             href="{% url 'junkiri-detail' starring.id %}">Read More</a>
+          {% endif %}
         </div>
       </div>
     </div>
