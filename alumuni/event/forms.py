@@ -12,11 +12,11 @@ class EventCreateForm(forms.ModelForm):
         # exclude = ('attachments',)
         widgets = {
         'description': SummernoteWidget(),
-        'start_date': DatePickerInput(format='%Y-%m-%d', attrs={'placeholder': 'Event Start Date'}), # specify date-frmat
-        'end_date': DatePickerInput(format='%Y-%m-%d', attrs={'placeholder': 'Event End Date'}), # specify date-format
+        'start_date': DateTimePickerInput(attrs={'placeholder': 'Event Start Date'}), # specify date-frmat
+        'end_date': DateTimePickerInput(attrs={'placeholder': 'Event End Date'}), # specify date-format
         }
-    def __init__(self, user, *args, **kwargs):
-        super(EventCreateForm, self).__init__(*args, **kwargs)
+    # def __init__(self, user, *args, **kwargs):
+    #     super(EventCreateForm, self).__init__(*args, **kwargs)
         
 
 class EventRegistrationForm(forms.ModelForm):
