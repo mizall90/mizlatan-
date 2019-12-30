@@ -26,24 +26,24 @@
                 <div class="register-button">
                     <!-- for past events -->
                     {% if event.id in past_events %}
-                    <a class="btn btn-block btn-danger" disabled>{% trans 'Registration Closed' %}</a>
+                    <a class="btn u-shadow-v33 g-color-white g-bg-primary g-bg-main--hover g-px-100 g-py-13 mr-2">{% trans 'Registration Closed' %}</a>
                     {% else %}
                     <!-- for upcoming events -->
                     {% if user.is_authenticated %}
                     {% if user.id in event.get_attendees %}
-                    <a class="btn btn-block btn-primary" disabled>{% trans 'Already Checked In' %}</a>
+                    <a class="btn u-shadow-v33 g-color-white g-bg-primary g-bg-main--hover g-px-100 g-py-13 mr-2" disabled>{% trans 'Already Checked In' %}</a>
                     {% else %}
                     {%if event.registration_limit == event.total_attendees  %}
-                    <a class="btn btn-block btn-danger" disabled>{% trans 'Registration Closed' %}</a>
+                    <a class="btn u-shadow-v33 g-color-white g-bg-primary g-bg-main--hover g-px-100 g-py-13 mr-2">{% trans 'Registration Closed' %}</a>
                     {% else %}
-                    <a href="{% url 'register' event.id %}" class="btn btn-block btn-primary">{% trans 'Register' %}</a>
+                    <a href="{% url 'register' event.id %}" class="btn u-shadow-v33 g-color-white g-bg-primary g-bg-main--hover g-px-100 g-py-13 mr-2">{% trans 'Register Now' %}</a>
                     {% endif %}
                     {% endif %}
                     {%else%}
                     {%if event.registration_limit == event.total_attendees  %}
-                    <a class="btn btn-block btn-danger" disabled>{% trans 'Registration Closed' %}</a>
+                    <a class="btn u-shadow-v33 g-color-white g-bg-primary g-bg-main--hover g-px-100 g-py-13 mr-2">{% trans 'Registration Closed' %}</a>
                     {% else %}
-                    <a href="{% url 'register' event.id %}" class="btn btn-block btn-primary">{% trans 'Register' %}</a>
+                    <a href="{% url 'register' event.id %}" class="btn u-shadow-v33 g-color-white g-bg-primary g-bg-main--hover g-px-100 g-py-13 mr-2">{% trans 'Register Now' %}</a>
                     {% endif%}
 
                     {%endif%}
