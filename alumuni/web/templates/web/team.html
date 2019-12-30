@@ -19,116 +19,26 @@
       <div class="row">
         {% for member in members %}
         {% if forloop.counter < 5 %}
-        <div class="col-md-6 col-lg-3 g-mb-30 g-mb-0--lg">
-          <div class="text-center">
-            <!-- Figure -->
-            <figure class="g-pos-rel g-parent g-mb-30">
-              <!-- Figure Image -->
-              {% if member.image %}
-              <img class="w-100" src="{{ member.image.url }}" alt="Image Description">
-              {% endif %}
-              <!-- End Figure Image -->
-
-              <!-- Figure Caption -->
-              <figcaption class="g-pos-abs g-top-0 g-left-0 g-flex-middle w-100 h-100 g-bg-primary-dark-v1-opacity-0_8 opacity-0 g-opacity-1--parent-hover g-pa-20 g-transition-0_2 g-transition--ease-in">
-                <q class="text-uppercase u-quote-v1 g-flex-middle-item g-line-height-1_4 g-font-weight-700 g-font-size-16 g-color-white">{{member.text|truncatechars:100}}</q>
-                <!-- Figure Social Icons -->
-                <ul class="list-inline g-flex-middle-item--bottom g-mb-30 mt-0">
-                  <li class="list-inline-item g-mx-5">
-                    <a class="u-icon-v3 u-icon-size--xs g-width-35 g-height-35 g-color-primary g-color-white--hover g-bg-white g-bg-primary--hover" href="#!">
-                      <i class="fa fa-twitter"></i>
-                    </a>
-                  </li>
-                  <li class="list-inline-item g-mx-5">
-                    <a class="u-icon-v3 u-icon-size--xs g-width-35 g-height-35 g-color-primary g-color-white--hover g-bg-white g-bg-primary--hover" href="#!">
-                      <i class="fa fa-pinterest"></i>
-                    </a>
-                  </li>
-                  <li class="list-inline-item g-mx-5">
-                    <a class="u-icon-v3 u-icon-size--xs g-width-35 g-height-35 g-color-primary g-color-white--hover g-bg-white g-bg-primary--hover" href="#!">
-                      <i class="fa fa-facebook"></i>
-                    </a>
-                  </li>
-                  <li class="list-inline-item g-mx-5">
-                    <a class="u-icon-v3 u-icon-size--xs g-width-35 g-height-35 g-color-primary g-color-white--hover g-bg-white g-bg-primary--hover" href="#!">
-                      <i class="fa fa-linkedin"></i>
-                    </a>
-                  </li>
-                </ul>
-                <!-- End Figure Social Icons -->
-              </figcaption>
-              <!-- End Figure Caption -->
-            </figure>
-            <!-- End Figure -->
-
-            <!-- Figure Info -->
-            <em class="d-block text-uppercase g-font-style-normal g-font-weight-700 g-font-size-11 g-color-primary g-mb-5">- {{ member.batch }} Grad</em>
-            <h4 class="text-uppercase g-font-weight-700 g-font-size-18 g-theme-color-gray-dark-v1 g-mb-7">{{ member.first_name }}&nbsp;{{member.last_name}}</h4>
-            <p class="g-font-size-16 g-theme-color-gray-light-v3 mb-0">{{ member.position }}</p>
-            <!-- End Figure Info-->
+        <div class="col-sm-4 mb-20">
+          <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+                {% if member.image %}
+                <img src="{{member.image.url}}" alt="Avatar" style="width:300px;height:300px;">
+                {% endif %}
+              </div>
+              <div class="flip-card-back">
+                <h1>{{ member.first_name }} {{ member.last_name }}</h1> 
+                <p style="color: white;">{{ member.position }}</p> 
+                <p style="color: white;">{{ member.text }}</p>
+              </div>
+            </div>
           </div>
         </div>
         {% endif %}
         {% endfor %}
       </div><br>
       <!-- End Team Block -->
-      <!-- Team Block 2 -->
-      <div class="row">
-          {% for member in members %}
-          {% if forloop.counter < 5 %}
-          <div class="col-md-6 col-lg-3 g-mb-30 g-mb-0--lg">
-            <div class="text-center">
-              <!-- Figure -->
-              <figure class="g-pos-rel g-parent g-mb-30">
-                <!-- Figure Image -->
-                {% if member.image %}
-                <img class="w-100" src="{{ member.image.url }}"  alt="Image Description">
-                {% endif %}
-                <!-- End Figure Image -->
-  
-                <!-- Figure Caption -->
-                <figcaption class="g-pos-abs g-top-0 g-left-0 g-flex-middle w-100 h-100 g-bg-primary-dark-v1-opacity-0_8 opacity-0 g-opacity-1--parent-hover g-pa-20 g-transition-0_2 g-transition--ease-in">
-                  <q class="text-uppercase u-quote-v1 g-flex-middle-item g-line-height-1_4 g-font-weight-700 g-font-size-16 g-color-white">{{member.text|truncatechars:220}}</q>
-                  <!-- Figure Social Icons -->
-                  <ul class="list-inline g-flex-middle-item--bottom g-mb-30 mt-0">
-                    <li class="list-inline-item g-mx-5">
-                      <a class="u-icon-v3 u-icon-size--xs g-width-35 g-height-35 g-color-primary g-color-white--hover g-bg-white g-bg-primary--hover" href="#!">
-                        <i class="fa fa-twitter"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item g-mx-5">
-                      <a class="u-icon-v3 u-icon-size--xs g-width-35 g-height-35 g-color-primary g-color-white--hover g-bg-white g-bg-primary--hover" href="#!">
-                        <i class="fa fa-pinterest"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item g-mx-5">
-                      <a class="u-icon-v3 u-icon-size--xs g-width-35 g-height-35 g-color-primary g-color-white--hover g-bg-white g-bg-primary--hover" href="#!">
-                        <i class="fa fa-facebook"></i>
-                      </a>
-                    </li>
-                    <li class="list-inline-item g-mx-5">
-                      <a class="u-icon-v3 u-icon-size--xs g-width-35 g-height-35 g-color-primary g-color-white--hover g-bg-white g-bg-primary--hover" href="#!">
-                        <i class="fa fa-linkedin"></i>
-                      </a>
-                    </li>
-                  </ul>
-                  <!-- End Figure Social Icons -->
-                </figcaption>
-                <!-- End Figure Caption -->
-              </figure>
-              <!-- End Figure -->
-  
-              <!-- Figure Info -->
-              <em class="d-block text-uppercase g-font-style-normal g-font-weight-700 g-font-size-11 g-color-primary g-mb-5">- {{ member.batch }} Grad</em>
-              <h4 class="text-uppercase g-font-weight-700 g-font-size-18 g-theme-color-gray-dark-v1 g-mb-7">{{ member.first_name }}&nbsp;{{member.last_name}}</h4>
-              <p class="g-font-size-16 g-theme-color-gray-light-v3 mb-0">{{ member.position }}</p>
-              <!-- End Figure Info-->
-            </div>
-          </div>
-          {% endif %}
-          {% endfor %}   
-      </div>
-      <!-- End Team Block 2 -->
     </div>
   </section>
 

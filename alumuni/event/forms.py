@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django import forms
 from .models import Event, EventRegistration, Venue
 from django_summernote.widgets import (SummernoteWidget)   
+from bootstrap_datepicker_plus import DatePickerInput, TimePickerInput, DateTimePickerInput, MonthPickerInput, YearPickerInput
 
 class EventCreateForm(forms.ModelForm):
     #creator = forms.ModelChoiceField(queryset=User.objects.none(), widget=forms.Select(), empty_label=None, to_field_name="username", required=True)
@@ -11,14 +12,12 @@ class EventCreateForm(forms.ModelForm):
         # exclude = ('attachments',)
         widgets = {
         'description': SummernoteWidget(),
+        'start_date': DatePickerInput(format='%Y-%m-%d', attrs={'placeholder': 'Event Start Date'}), # specify date-frmat
+        'end_date': DatePickerInput(format='%Y-%m-%d', attrs={'placeholder': 'Event End Date'}), # specify date-format
         }
-    
-    # def __init__(self, user, *args, **kwargs):
-    #     super(EventCreateForm, self).__init__(*args, **kwargs)
-    #     if user.is_superuser:
-    #         self.fields['creator'].queryset = User.objects.filter(id = user.id)
-
-
+    def __init__(self, user, *args, **kwargs):
+        super(EventCreateForm, self).__init__(*args, **kwargs)
+        
 
 class EventRegistrationForm(forms.ModelForm):
     event = forms.ModelChoiceField(queryset=Event.objects.none(), widget=forms.Select(), empty_label=None, to_field_name="title", required=True)

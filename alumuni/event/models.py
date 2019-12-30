@@ -3,7 +3,6 @@ from django.db import models
 from django.conf import settings
 
 from django.contrib.auth.models import User
-from django_google_maps import fields as map_fields
 
 GUESS_LIMIT = [(0, u"No limit")] + list(zip(range(1,100), range(1,100)))
 STATUS_CHOICES = (

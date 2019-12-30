@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'account',
     'bootstrap_datepicker_plus',
     'event',
-    # 'django_google_maps',
 ]
 
 MIDDLEWARE = [
